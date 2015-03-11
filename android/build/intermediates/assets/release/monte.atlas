@@ -1,0 +1,90 @@
+
+monte.png
+size: 1024,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+monte1
+  rotate: false
+  xy: 2, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte10
+  rotate: false
+  xy: 418, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte11
+  rotate: false
+  xy: 470, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte12
+  rotate: false
+  xy: 522, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte2
+  rotate: false
+  xy: 574, 10
+  size: 44, 52
+  orig: 44, 52
+  offset: 0, 0
+  index: -1
+monte3
+  rotate: false
+  xy: 54, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte4
+  rotate: false
+  xy: 106, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte5
+  rotate: false
+  xy: 158, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte6
+  rotate: false
+  xy: 210, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte7
+  rotate: false
+  xy: 262, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte8
+  rotate: false
+  xy: 314, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+monte9
+  rotate: false
+  xy: 366, 2
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
