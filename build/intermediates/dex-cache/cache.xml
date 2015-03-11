@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="C:\Users\Sebas\Documents\LibGDX\Proyectos\Xogo2D\android\build\intermediates\pre-dexed\release\core-1.0-8b77c7ec8bde77fdde42654190fb1da8f5477298.jar"
+        jar="C:\Users\Sebas\Documents\LibGDX\Proyectos\Xogo2D\core\build\libs\core-1.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4b91c2d74db5f7a74055f22e66bcd070f038cfa6"/>
+    <item
+        dex="C:\Users\Sebas\Documents\LibGDX\Proyectos\Xogo2D\android\build\intermediates\pre-dexed\release\gdx-1.4.1-c3b234ede7c18363814accef18252d116c338c4d.jar"
+        jar="C:\Users\Sebas\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx\1.4.1\df470d263438048af74860ca51fc497c16a0c76a\gdx-1.4.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="df470d263438048af74860ca51fc497c16a0c76a"/>
+    <item
+        dex="C:\Users\Sebas\Documents\LibGDX\Proyectos\Xogo2D\android\build\intermediates\pre-dexed\release\gdx-box2d-1.4.1-0ebc1797f6eca9154ff7adc62a2ae8548e3f3391.jar"
+        jar="C:\Users\Sebas\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-box2d\1.4.1\9e6453d244896698694a7f3059f15ae509044101\gdx-box2d-1.4.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="9e6453d244896698694a7f3059f15ae509044101"/>
+    <item
+        dex="C:\Users\Sebas\Documents\Nueva carpeta\GradleProyect\Xogo2D\android\build\intermediates\pre-dexed\release\core-1.0-848d7df55a1f4d44c89dddc23ac804ae4cefec5b.jar"
+        jar="C:\Users\Sebas\Documents\Nueva carpeta\GradleProyect\Xogo2D\core\build\libs\core-1.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="be39ff01d2b4f00fdacb061e4b9e88f1ea79d159"/>
+    <item
+        dex="C:\Users\Sebas\Documents\LibGDX\Proyectos\Xogo2D\android\build\intermediates\pre-dexed\release\gdx-backend-android-1.4.1-3473f197a29c2020d7306baefde4f4866c370708.jar"
+        jar="C:\Users\Sebas\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-backend-android\1.4.1\eca2621f18b162c03992bd3ecc226e8a477dc6f9\gdx-backend-android-1.4.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="eca2621f18b162c03992bd3ecc226e8a477dc6f9"/>
+
+</pre-dex-items>
