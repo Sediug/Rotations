@@ -58,7 +58,7 @@ public class Presentacion implements Screen, InputProcessor{
 	private final float X = 50f, quitY = 85f, optionsY = 140f, scoreY = 195f, playY = 250f;
 	
 	private Vector3 vecTemporal;
-	Rectangle dedo;
+	private Rectangle dedo;
 	private Rectangle boton;
 	private Music son;
 	private final float volumenSon = 0.2f;
@@ -72,76 +72,82 @@ public class Presentacion implements Screen, InputProcessor{
   	private Skin skin = MeuXogoGame.skin;
   	
   	private Preferences prefs;
-  
+
   	private Rectangle buttonYes, buttonNo;
   	private boolean sair;
   	
 	
-	public Presentacion(MeuXogoGame xogo) {
+	public Presentacion (MeuXogoGame xogo) 
+	{
 		this.meuxogogame = xogo;
 		
 		camara2d = new OrthographicCamera();
-        batch = new SpriteBatch();
-        fondo = new Texture(Gdx.files.internal("PantallaPrincipal2.png"));
+        	batch = new SpriteBatch();
+        	fondo = new Texture(Gdx.files.internal("PantallaPrincipal2.png"));
 	    
-        prefs = meuxogogame.getPrefs();
+        	prefs = meuxogogame.getPrefs();
 	    
 		vecTemporal = new Vector3();
 		dedo = new Rectangle();
 		boton = new Rectangle();
 		
-	    son = AssetsXogo.musicaP;
-
-	    
-        cargarStage();
+	    	son = AssetsXogo.musicaP;
+	    	
+        	cargarStage();
             
-	    escoitarClicks = true;
+		escoitarClicks = true;
 	    
-	    //Rectangulo que representa posicion e tamanho dos botons dos dialogs
-	    buttonYes = new Rectangle(120f, 215f, 30f, 25f);
-	    buttonNo = new Rectangle(159f, 215f, 30, 25);
+		//Rectangulo que representa posicion e tamanho dos botons dos dialogs
+		buttonYes = new Rectangle(120f, 215f, 30f, 25f);
+		buttonNo = new Rectangle(159f, 215f, 30, 25);
 	    
-	    sair = false;
+	    	sair = false;
 	    
-	    //Preguntar se quere son activado ou non
-        if(meuxogogame.getComprobarSound()) avisarSonido();
+		//Preguntar se quere son activado ou non
+        	if(meuxogogame.getComprobarSound()) avisarSonido();
         
 	}
 
 	
 	//Carga o estage asignandolle que se en android pulsan back chame a avisar sair.
-	private void cargarStage() {
+	private void cargarStage () 
+	{
 		escoitarClicks = false;
-    	sair = true;
+    		sair = true;
 		Gdx.input.setCatchBackKey(true);
-            stage = new Stage(){
-                    @Override
-                    public boolean keyDown(int keyCode) {
-                    if (keyCode == Keys.BACK) {
-                            avisarSair();
-                    }
-                    return super.keyDown(keyCode);
-                    }
-            };
+            	stage = new Stage()
+	            	{
+	                    @Override
+	                    public boolean keyDown(int keyCode) {
+	                    	if (keyCode == Keys.BACK) {
+	                            avisarSair();
+	                    	}
+	                    	return super.keyDown(keyCode);
+	                    }
+            		};
             
-        Gdx.input.setInputProcessor(stage);
+        	Gdx.input.setInputProcessor(stage);
 	}
 	
 	
-	private void avisarSair() {
-		new Dialog("Exit game", skin, "dialog") { 
-			
-			protected void result (Object object) {
-                if ((Boolean) object){
-                     Gdx.app.exit();
-                }
+	private void avisarSair() 
+	{
+		new Dialog("Exit game", skin, "dialog") 
+		{ 
+			protected void result (Object object) 
+			{
+                		if ((Boolean) object)
+                		{
+                     			Gdx.app.exit();
+                		}
 			}	
 			
-		}.text("Are you sure to exit the game?")
+		}
+		.text("Are you sure to exit the game?")
 		.button("Yes", true)
 		.button("No", false)
 		.key(Keys.ENTER, true)
-        .key(Keys.ESCAPE, false)
+        	.key(Keys.ESCAPE, false)
 		.show(stage);
 
 	}
@@ -149,16 +155,16 @@ public class Presentacion implements Screen, InputProcessor{
 	
 
 	private void avisarSonido() {
-		escoitarClicks = false; // Mentres miro esto non quero que se active ningún outro boton.
-		new Dialog("Sound state", skin, "dialog") { 
-			protected void result (Object object) {
-				
-			}
-		}.text("Enable the game sound?") 
-			.button("Yes", true)
-			.button("No", false)
-			.key(Keys.ENTER, true)
-			.key(Keys.ESCAPE, false).show(stage);
+		escoitarClicks = false; // Mentres miro esto non quero que se active ningÃºn outro boton.
+		new Dialog("Sound state", skin, "dialog") 
+		{ 
+			protected void result (Object object) {}
+		}
+		.text("Enable the game sound?") 
+		.button("Yes", true)
+		.button("No", false)
+		.key(Keys.ENTER, true)
+		.key(Keys.ESCAPE, false).show(stage);
 		
 
 	}
@@ -168,15 +174,12 @@ public class Presentacion implements Screen, InputProcessor{
 		
 		batch.begin();
 			batch.draw(fondo,0,0,Mundo.MUNDO_ANCHO,Mundo.MUNDO_ALTO);
-			
 			debuxarBotons();
-			
 		batch.end();
 		
 		//User interface
-		 
 		stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
+        	stage.draw();
 	}
 
 	private void debuxarBotons() {
@@ -195,10 +198,10 @@ public class Presentacion implements Screen, InputProcessor{
 	@Override
 	public void resize(int width, int height) {
 		camara2d.setToOrtho(false, Mundo.MUNDO_ANCHO, Mundo.MUNDO_ALTO);
-        camara2d.update();
+        	camara2d.update();
        
-        batch.setProjectionMatrix(camara2d.combined);
-        batch.enableBlending();
+        	batch.setProjectionMatrix(camara2d.combined);
+        	batch.enableBlending();
 	}
 	
 	@Override
@@ -243,8 +246,8 @@ public class Presentacion implements Screen, InputProcessor{
 		if (keycode == Keys.BACK) {//Android pulsan a tecla de volver.
 			playSonBack();
 			escoitarClicks = false;
-        	sair = true;
-        	avisarSair();
+        		sair = true;
+        		avisarSair();
 		}
 		return false;
 	}
@@ -266,70 +269,73 @@ public class Presentacion implements Screen, InputProcessor{
 		
 		
 		vecTemporal.set(screenX,screenY,0);
-        camara2d.unproject(vecTemporal);
+        	camara2d.unproject(vecTemporal);
         
-        dedo.set(vecTemporal.x,vecTemporal.y,2, 2);
-        
-        if(meuxogogame.getComprobarSound()) dialogYesNoSound();
-        
-        
-        boton.set(X, playY, ANCHOBUTTON, ALTOBUTTON);
-        if (Intersector.overlaps(dedo, boton) && escoitarClicks){
+        	dedo.set(vecTemporal.x,vecTemporal.y,2, 2);
+        	boton.set(X, playY, ANCHOBUTTON, ALTOBUTTON);
         	
-        	playSonSelect();
-        	meuxogogame.setScreen(new PantallaXogo(meuxogogame));
-        }
+        	if(meuxogogame.getComprobarSound()) dialogYesNoSound();
         
-        boton.set(X, scoreY, ANCHOBUTTON, ALTOBUTTON);
+	        if (Intersector.overlaps(dedo, boton) && escoitarClicks)
+	        {
+	        	playSonSelect();
+	        	meuxogogame.setScreen(new PantallaXogo(meuxogogame));
+	        }
         
-        if (Intersector.overlaps(dedo, boton)&& escoitarClicks){// Interseccion dedo co boton.
-        	
-        	playSonSelect();
-        	meuxogogame.setScreen(new PantallaMarcadores(meuxogogame));
-        }
-        
-        boton.set(X, optionsY, ANCHOBUTTON, ALTOBUTTON);
-        
-        if (Intersector.overlaps(dedo, boton)&& escoitarClicks){// Interseccion dedo co boton.
-        	
-        	playSonSelect();
-        	meuxogogame.setScreen(new PantallaOptions(meuxogogame));
-        }
-        
-        //Quit 
-        boton.set(X, quitY, ANCHOBUTTON, ALTOBUTTON);
-        
-        if (Intersector.overlaps(dedo, boton)){
-        	// Ponher a falso para que so escoite os clicks de Yes,No. Se non está esto sempre 
-        	//pillaría antes os clicks a highscore etc porque os comproba antes.
-        	playSonBack();
-        	escoitarClicks = false;
-        	sair = true;
-        	avisarSair();//Dialog exit
-        }
-        
-        if(!escoitarClicks && sair) dialogYesNoSair();
-        
+	        boton.set(X, scoreY, ANCHOBUTTON, ALTOBUTTON);
+	        
+	        if (Intersector.overlaps(dedo, boton)&& escoitarClicks) // Interseccion dedo co boton.
+	        {
+	        	playSonSelect();
+	        	meuxogogame.setScreen(new PantallaMarcadores(meuxogogame));
+	        }
+	        
+	        boton.set(X, optionsY, ANCHOBUTTON, ALTOBUTTON);
+	        
+	        if (Intersector.overlaps(dedo, boton)&& escoitarClicks){// Interseccion dedo co boton.
+	        	
+	        	playSonSelect();
+	        	meuxogogame.setScreen(new PantallaOptions(meuxogogame));
+	        }
+	        
+	        //Quit 
+	        boton.set(X, quitY, ANCHOBUTTON, ALTOBUTTON);
+	        
+	        if (Intersector.overlaps(dedo, boton)){
+	        	// Ponher a falso para que so escoite os clicks de Yes,No. Se non estÃ¡ esto sempre 
+	        	//pillarÃ­a antes os clicks a highscore etc porque os comproba antes.
+	        	playSonBack();
+	        	escoitarClicks = false;
+	        	sair = true;
+	        	avisarSair();//Dialog exit
+	        }
+	        
+	        if(!escoitarClicks && sair) dialogYesNoSair();
+	        
         
 		return false;
 	}
 
 
 	public void playSonBack() {
-		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android")){
+		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonBack().setVolume(meuxogogame.sonBack().play(), volumenSon);
 		}
 			
-		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android")){
+		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonBack().setVolume(meuxogogame.sonBack().play(), volumenSonAndroid);
 		}
 	}
 	
 	public void playSonSelect() {
-		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android")){
+		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonSelect().setVolume(meuxogogame.sonSelect().play(), volumenSon);
 		}
-		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android")){
+		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonSelect().setVolume(meuxogogame.sonSelect().play(), volumenSonAndroid);
 		}
 	}
@@ -338,61 +344,65 @@ public class Presentacion implements Screen, InputProcessor{
 
 	private void dialogYesNoSair() {
 		
-        //Comprobar Yes
-        if (Intersector.overlaps(dedo, buttonYes) ){//Yes
-        	Gdx.app.exit();	  	
-        }
-        
-        //Comprobar No.
-        if(Intersector.overlaps(dedo, buttonNo)){//No
-        	meuxogogame.setScreen(new Presentacion(meuxogogame));	
-        }
+	        //Comprobar Yes
+	        if (Intersector.overlaps(dedo, buttonYes) ){//Yes
+	        	Gdx.app.exit();	  	
+	        }
+	        
+	        //Comprobar No.
+	        if(Intersector.overlaps(dedo, buttonNo)){//No
+	        	meuxogogame.setScreen(new Presentacion(meuxogogame));	
+	        }
         
 	}
 	
 	private void dialogYesNoSound() {
 		
 		//Comprobar Yes  
-        if(Intersector.overlaps(dedo, buttonYes) ){
-        	 meuxogogame.setSoundState(true);//Enabled / yes 
-        	 meuxogogame.setComprobarSound(false);//Comprobado. A false
-        	 prefs.putBoolean("soundState", true);
-        	 
-        	 meuxogogame.setScreen(new Presentacion(meuxogogame));
-        }
+	        if(Intersector.overlaps(dedo, buttonYes) ){
+	        	 meuxogogame.setSoundState(true);//Enabled / yes 
+	        	 meuxogogame.setComprobarSound(false);//Comprobado. A false
+	        	 prefs.putBoolean("soundState", true);
+	        	 
+	        	 meuxogogame.setScreen(new Presentacion(meuxogogame));
+	        }
         
-        //Comprobar No.
-        if(Intersector.overlaps(dedo, buttonNo)){
-        	meuxogogame.setSoundState(false);//Disabled / No 
-        	meuxogogame.setComprobarSound(false);//Comprobado.
-        	prefs.putBoolean("soundState", false);
-        	
-        	meuxogogame.setScreen(new Presentacion(meuxogogame));
-        }
-        
-        prefs.flush();
+	        //Comprobar No.
+	        if(Intersector.overlaps(dedo, buttonNo)){
+	        	meuxogogame.setSoundState(false);//Disabled / No 
+	        	meuxogogame.setComprobarSound(false);//Comprobado.
+	        	prefs.putBoolean("soundState", false);
+	        	
+	        	meuxogogame.setScreen(new Presentacion(meuxogogame));
+	        }
+	        
+	        prefs.flush();
 	}
 
 	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int screenX, int screenY, int pointer, int button) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int screenX, int screenY, int pointer) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
+	public boolean mouseMoved (int screenX, int screenY)
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean scrolled(int amount) {
+	public boolean scrolled (int amount) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
