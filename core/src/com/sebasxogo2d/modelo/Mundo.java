@@ -32,7 +32,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Mundo {
 	
-	public static final int MUNDO_ANCHO=300;//Relacion 0.6 respecto 600x1000
+    public static final int MUNDO_ANCHO=300;//Relacion 0.6 respecto 600x1000
     public static final int MUNDO_ALTO=500;
     
     
