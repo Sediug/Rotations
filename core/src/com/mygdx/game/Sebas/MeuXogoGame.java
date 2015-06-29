@@ -40,19 +40,18 @@ import com.sebasxogo2d.pantallas.Presentacion;
 
 
 public class MeuXogoGame extends Game {
-	SpriteBatch batch;
-	Texture img;
+	
 	
   	//Graficos User Interface
-  	public static AssetManager assetManager;
-    public static Skin skin;
-    private boolean  comprobarSon;
-    private boolean soundState;//Estado true -> enabled false ->disabled
-    private Preferences prefs;
-    public final String arquivoPreferencias = "Preferencias.xml";
-    
-    //Son cliks
-    private Sound sonSelect, sonBack;
+	public static AssetManager assetManager;
+	public static Skin skin;
+	private boolean  comprobarSon;
+	private boolean soundState;//Estado true -> enabled false ->disabled
+	private Preferences prefs;
+	public final String arquivoPreferencias = "Preferencias.xml";
+	    
+	//Son cliks
+	private Sound sonSelect, sonBack;
     
 	@Override
 	public void create() {
@@ -61,18 +60,18 @@ public class MeuXogoGame extends Game {
 		
 		//Cargar User interface.
 		assetManager = new AssetManager();
-        assetManager.load("uiskin.atlas",TextureAtlas.class);
-        assetManager.finishLoading();
-        TextureAtlas atlas = assetManager.get("uiskin.atlas", TextureAtlas.class);
-        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas); // Cargamos os estilos
-        
-        comprobarSon = true; //Cando inicia o xogo preguntar si queren habilitar son ou non e despois non volver preguntar.
-        soundState = false; // antes de arrancar a app que non soe a música a menos que lle de na Yes no dialog
-        
-        prefs = Gdx.app.getPreferences(arquivoPreferencias);
-        
-	    sonSelect = AssetsXogo.sonSelect;
-	    sonBack = AssetsXogo.sonBack;
+	        assetManager.load("uiskin.atlas",TextureAtlas.class);
+	        assetManager.finishLoading();
+	        TextureAtlas atlas = assetManager.get("uiskin.atlas", TextureAtlas.class);
+	        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas); // Cargamos os estilos
+	        
+	        comprobarSon = true; //Cando inicia o xogo preguntar si queren habilitar son ou non e despois non volver preguntar.
+	        soundState = false; // antes de arrancar a app que non soe a mÃºsica a menos que lle de na Yes no dialog
+	        
+	        prefs = Gdx.app.getPreferences(arquivoPreferencias);
+	        
+		sonSelect = AssetsXogo.sonSelect;
+	    	sonBack = AssetsXogo.sonBack;
 	    
 		//Asignar a pantalla a que vai chamar a nosa clase principal (esta clase).
 		setScreen(new Presentacion(this));	
