@@ -50,21 +50,23 @@ public class Creditos implements Screen, InputProcessor {
 	private BitmapFont bmf;
 	
 	
-	public Creditos (MeuXogoGame xogo){
+	public Creditos (MeuXogoGame xogo)
+	{
 		this.meuxogogame = xogo;
 
 		camara2d = new OrthographicCamera();
-        batch = new SpriteBatch();
-        fondo = new Texture(Gdx.files.internal("PantallaPrincipal2.png"));
- 
-        bmf = new BitmapFont();
-        creditos = new StringBuilder();
-        encherCreditos();
+	        batch = new SpriteBatch();
+	        fondo = new Texture(Gdx.files.internal("PantallaPrincipal2.png"));
+	 
+	        bmf = new BitmapFont();
+	        creditos = new StringBuilder();
+	        encherCreditos();
        
 	}
 
 
-	public void encherCreditos() {
+	public void encherCreditos () 
+	{
 		creditos.append("Created and edited by Sebastian Cabanas \n\n");
 		creditos.append("              Sound\n");
 		creditos.append("Some of the sounds in this project were created \n");
@@ -81,50 +83,55 @@ public class Creditos implements Screen, InputProcessor {
 	
 	
 	@Override
-	public void render(float delta) {
+	public void render (float delta) 
+	{
 		Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_CLEAR_VALUE);
+        	Gdx.gl.glClear(GL20.GL_COLOR_CLEAR_VALUE);
 
 		batch.begin();
 		 	bmf.setColor(Color.WHITE);
-	        bmf.setScale(1);
+	        	bmf.setScale(1);
 			batch.draw(fondo,0,0,camara2d.viewportWidth,camara2d.viewportHeight);
 			bmf.drawMultiLine(batch, creditos, 0, camara2d.viewportHeight-100);
 		batch.end();
 	}
 
 	@Override
-	public void resize(int width, int height) {
+	public void resize(int width, int height) 
+	{
 		camara2d.setToOrtho(false, Mundo.MUNDO_ANCHO, Mundo.MUNDO_ALTO);
-        camara2d.update();
-       
-        batch.setProjectionMatrix(camara2d.combined);
-        batch.disableBlending();
+	        camara2d.update();
+	       
+	        batch.setProjectionMatrix(camara2d.combined);
+	        batch.disableBlending();
 	}
+	
 	@Override
-	public void show() {
+	public void show () 
+	{
 		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
-	public void hide() {
+	public void hide () 
+	{
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void pause() {
+	public void pause () {
 		Gdx.input.setInputProcessor(null);
 
 	}
 
 	@Override
-	public void resume() {
+	public void resume () {
 		 Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
-	public void dispose() {
+	public void dispose () {
 		Gdx.input.setInputProcessor(null);
 		
 		batch.dispose();
@@ -132,52 +139,59 @@ public class Creditos implements Screen, InputProcessor {
 	}
 
 	@Override
-	public boolean keyDown(int keycode) {
-		if (keycode == Keys.BACK) {//Android pulsan a tecla de volver.
-        	meuxogogame.setComprobarSound(false);
-        	meuxogogame.setScreen(new PantallaOptions(meuxogogame));
+	public boolean keyDown (int keycode) 
+	{
+		if (keycode == Keys.BACK) //Android pulsan a tecla de volver.
+		{
+        		meuxogogame.setComprobarSound(false);
+        		meuxogogame.setScreen(new PantallaOptions(meuxogogame));
 		}
 		return false;
 	}
 
 	@Override
-	public boolean keyUp(int keycode) {
+	public boolean keyUp (int keycode) 
+	{
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped (char character) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean keyTyped(char character) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+	public boolean touchDown (int screenX, int screenY, int pointer, int button) 
+	{
 		meuxogogame.setScreen(new PantallaOptions(meuxogogame));
 		return false;
 	}
 
 	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int screenX, int screenY, int pointer, int button) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int screenX, int screenY, int pointer) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
+	public boolean mouseMoved (int screenX, int screenY) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean scrolled(int amount) {
+	public boolean scrolled (int amount) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
