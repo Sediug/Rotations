@@ -44,8 +44,8 @@ import com.sebasxogo2d.modelo.Mundo;
  * @author Sebastian Cabanas 
  * */
 
-public class PantallaMarcadores implements Screen, InputProcessor {
-	
+public class PantallaMarcadores implements Screen, InputProcessor 
+{
 	private MeuXogoGame meuxogogame;
 	private OrthographicCamera camara2d;
 	private SpriteBatch batch;
@@ -77,33 +77,37 @@ public class PantallaMarcadores implements Screen, InputProcessor {
 		this.meuxogogame = xogo;
 		
 		camara2d = new OrthographicCamera();
-        batch = new SpriteBatch();
-        fondo = new Texture(Gdx.files.internal("PantallaScore.png"));
-        
-        dedo = new Rectangle();
-        boton = new Rectangle();
-        
-        //Preferencias / Puntuacions
-        prefs = meuxogogame.getPrefs();
-        cargarPuntActuales();
-        
-        //Opcións de escritura.
-        bitMapFont = new BitmapFont();
+	        batch = new SpriteBatch();
+	        fondo = new Texture(Gdx.files.internal("PantallaScore.png"));
+	        
+	        dedo = new Rectangle();
+	        boton = new Rectangle();
+	        
+	        //Preferencias / Puntuacions
+	        prefs = meuxogogame.getPrefs();
+	        cargarPuntActuales();
+	        
+	        //OpciÃ³ns de escritura.
+	        bitMapFont = new BitmapFont();
 		bitMapFont.setColor(Color.BLUE);
-	    bitMapFont.setScale(1.5f);
+	    	bitMapFont.setScale(1.5f);
 	}
-	public void playSonBack() {
-		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android")){
+	public void playSonBack() 
+	{
+		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonBack().setVolume(meuxogogame.sonBack().play(), volumenSon);
 		}
 			
-		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android")){
+		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonBack().setVolume(meuxogogame.sonBack().play(), volumenSonAndroid);
 		}
 	}
 	
 
-	private void cargarPuntActuales() {
+	private void cargarPuntActuales ()
+	{
 		puntuacion1 = prefs.getInteger(PantallaXogo.puntuacion1,0);
 		puntuacion2 = prefs.getInteger(PantallaXogo.puntuacion2,0);
 		puntuacion3 = prefs.getInteger(PantallaXogo.puntuacion3,0);
@@ -118,20 +122,20 @@ public class PantallaMarcadores implements Screen, InputProcessor {
 	}
 	
 	@Override
-	public void render(float delta) {
+	public void render (float delta) 
+	{
 		batch.begin();
-		
 			batch.draw(fondo,0,0,Mundo.MUNDO_ANCHO,Mundo.MUNDO_ALTO);
 			batch.draw(AssetsXogo.back, X, Y, ANCHOBUTTON, ALTOBUTTON);
 			
-			//Pintar puntuación.
-		    pintarPuntuacions();
-		    
+			//Pintar puntuaciÃ³n.
+		    	pintarPuntuacions();
 		batch.end();
 
 	}
 
-	private void pintarPuntuacions() {
+	private void pintarPuntuacions () 
+	{
 		bitMapFont.draw(batch, ""+puntuacion1, xP1, yP1);
 		bitMapFont.draw(batch, ""+puntuacion2, xP2, yP2);
 		bitMapFont.draw(batch, ""+puntuacion3, xP3, yP3);
@@ -146,32 +150,35 @@ public class PantallaMarcadores implements Screen, InputProcessor {
 	}
 
 	@Override
-	public void resize(int width, int height) {
+	public void resize (int width, int height) 
+	{
 		camara2d.setToOrtho(false, Mundo.MUNDO_ANCHO, Mundo.MUNDO_ALTO);
-        camara2d.update();
-       
-        batch.setProjectionMatrix(camara2d.combined);
-        batch.enableBlending();
+	        camara2d.update();
+	       
+	        batch.setProjectionMatrix(camara2d.combined);
+	        batch.enableBlending();
 	}
 	@Override
-	public void show() {
+	public void show () 
+	{
 		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
-	public void hide() {
+	public void hide () 
+	{
 		Gdx.input.setInputProcessor(null);
-
 	}
 
 	@Override
-	public void pause() {
+	public void pause () 
+	{
 		Gdx.input.setInputProcessor(null);
-
 	}
 
 	@Override
-	public void resume() {
+	public void resume () 
+	{
 		 Gdx.input.setInputProcessor(this);
 	}
 
@@ -184,69 +191,77 @@ public class PantallaMarcadores implements Screen, InputProcessor {
 	}
 
 	@Override
-	public boolean keyDown(int keycode) {
-		if (keycode == Keys.BACK) {//Android pulsan a tecla de volver.
+	public boolean keyDown (int keycode) 
+	{
+		if (keycode == Keys.BACK) //Android pulsan a tecla de volver.
+		{
 			playSonBack();
-        	meuxogogame.setComprobarSound(false);
-        	meuxogogame.setScreen(new Presentacion(meuxogogame));
+        		meuxogogame.setComprobarSound(false);
+        		meuxogogame.setScreen(new Presentacion(meuxogogame));
 		}
 		return false;
 	}
 
 	@Override
-	public boolean keyUp(int keycode) {
+	public boolean keyUp (int keycode) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean keyTyped(char character) {
+	public boolean keyTyped (char character)
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		
+	public boolean touchDown (int screenX, int screenY, int pointer, int button) 
+	{
 		Vector3 vecTemporal = new Vector3();
 		
 		vecTemporal.set(screenX,screenY,0);
-        camara2d.unproject(vecTemporal);
+        	camara2d.unproject(vecTemporal);
 
+        	dedo.set(vecTemporal.x,vecTemporal.y,2, 2);
+        	boton.set(X, Y, ANCHOBUTTON, ALTOBUTTON);
         
-        dedo.set(vecTemporal.x,vecTemporal.y,2, 2);
-        boton.set(X, Y, ANCHOBUTTON, ALTOBUTTON);
         
-        
-        if (Intersector.overlaps(dedo, boton)){// Interceccion dedo co boton.
-        	playSonBack();
-        	meuxogogame.setComprobarSound(false);
-        	meuxogogame.setScreen(new Presentacion(meuxogogame));
-        }
+	        if (Intersector.overlaps(dedo, boton)) // Interceccion dedo co boton.
+	        {
+	        	playSonBack();
+	        	meuxogogame.setComprobarSound(false);
+	        	meuxogogame.setScreen(new Presentacion(meuxogogame));
+	        }
         
 		return false;
 	}
 
 	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int screenX, int screenY, int pointer, int button) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int screenX, int screenY, int pointer) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
+	public boolean mouseMoved (int screenX, int screenY) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean scrolled(int amount) {
+	public boolean scrolled (int amount) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
