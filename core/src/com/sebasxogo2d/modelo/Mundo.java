@@ -47,7 +47,6 @@ public class Mundo {
     /**
      * Instance a new world to the game with a size and a ball.
      *
-     * @author Sebastián Cabanas
      */
     public Mundo()
     {
