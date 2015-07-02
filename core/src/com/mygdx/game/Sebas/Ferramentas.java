@@ -23,19 +23,33 @@ package com.mygdx.game.Sebas;
  * 
  * */
 
-/**
- * @author Sebastian Cabanas 
- * */
 
 import com.badlogic.gdx.Gdx;
 
-public class Ferramentas {
+/**
+ * This class is to to provide tools to test the application
+ *
+ * @author Sebastián Cabanas 
+ */
+
+public class Ferramentas 
+{
 	
+	// Name of the application to test
 	private static final String LOG = "XOGO2D";
 	       
-
-	 public static void imprimirLog(String clase, String metodo, String mensaxe){
-		 Gdx.app.log(LOG, clase + ":"+metodo+":"+mensaxe);
-	 }
+	/**
+	 * Method which print a log into the console log, showing the class where the log
+	 * is called, the method and a message to show.
+	 * 
+	 * @param clase The class where this method is called.
+	 * @param metodo The method where this method is called.
+	 * @param mensaxe The message to show.
+	 * @author Sebastian Cabanas
+	 */
+	public static void imprimirLog (String clase, String metodo, String mensaxe)
+	{
+		Gdx.app.log(LOG, clase + ":"+metodo+":"+mensaxe);
+	}
 	
 }

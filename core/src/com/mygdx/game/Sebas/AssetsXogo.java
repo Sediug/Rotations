@@ -23,9 +23,6 @@ package com.mygdx.game.Sebas;
  * 
  * */
 
-/**
- * @author Sebastian Cabanas 
- * */
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -35,68 +32,71 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class AssetsXogo {
+/**
+ * This class is used to load all the assets of the game (textures, sounds...) and dispose it.
+ *
+ * @author Sebastián Cabanas 
+ * @version 1.5
+ * */
 
-	/*
-	 * Pola perda do contexto gráfico cando saímos do xogo en Android, imos
-	 * definir as texturas de clase (static) e imos crear dous métodos de clase:
-	 * un para cargar as texturas e outro para liberalas.
-	 * 
-	 * Dependendo do xogo podemos ter varios arquivos Assets se que por exemplo,
-	 * podemos cargar os gráficos en función do nivel do xogo, facendo unha
-	 * división lóxica e creando un arquivo para o protagonista, outro para os
-	 * inimigos,...
-	 */
+public class AssetsXogo 
+{
 
-	// Animacion bola
+	// Create the properties to load the assets.
+
+	// Ball animation 
 	public static Texture textureBola;
 	public static TextureRegion[][] tmpBola;
 	public static Animation animBola;
 
-	// Paleta
+	// Padle texture
 	public static Texture texturePaleta;
 
-	// Fondo
+	// Backgrounds
 	public static Texture textureFondo;
 	public static Texture textureOptions, textureOptions2;
 
-	// Vidas
+	// Lives
 	public static Texture vidas;
 
-	// Botons
+	// Buttons
 	public static Texture play, quit, hightscores, options, back;
 	public static Texture exit, pause, soundOn, soundOff;
 
 	// Game Over
 	public static Texture over;
 
-	// Música de fondo. Sons
+	// Sound and background music
 	public static Music musica;
 	public static Music musicaP;
 	public static Sound sonSelect, sonBack;
 
-	// Monte.
+	// Head animation using a TextureAtlas and sub regions.
 	private static TextureAtlas aMonte;
 	public static TextureRegion monte1, monte2, monte3, monte4, monte5, monte6,
-			monte7, monte8, monte9, monte10, monte11, monte12;
+								monte7, monte8, monte9, monte10, monte11, monte12;
 	public static TextureRegion[] framesAnimMonte;
 	public static Animation animMonte;
 
-	// 321GO Levels etc
+	// 321 GO Levels etc
 	public static Texture _1, _2, _3, go, level, _4, _5, _6, _7;
 
 	// Gesture
 	public static Texture izquierdo, derecho;
 
 	/**
-	 * Metodo encargado de cargar todas as texturas
+	 * Method wich load the textures. When the game is turned on then you need to load
+	 * all the textures that you will need to use.
+	 *
+	 * @author Sebastián Cabanas
 	 */
-	public static void cargarTexturas() {
+	public static void cargarTexturas() 
+	{
 
-		// Textura anim bola
+		// Texture anim ball
 		textureBola = new Texture(Gdx.files.internal("sprites.png"));
 
-		// Texturas monte.
+		// Head textures
 		aMonte = new TextureAtlas("monte.atlas");
 		monte1 = aMonte.findRegion("monte1");
 		monte2 = aMonte.findRegion("monte2");
@@ -112,48 +112,44 @@ public class AssetsXogo {
 		monte12 = aMonte.findRegion("monte12");
 		cargarArrayAnim();
 
-		// Textura fondo
+		// Background textures
 		textureFondo = new Texture(Gdx.files.internal("bg.png"));
 
-		// Textura paleta de rebote.
+		// Padle texture
 		texturePaleta = new Texture(Gdx.files.internal("paleta.png"));
 
-		// Textura corazon vidas
+		// Hearts texture (lives)
 		vidas = new Texture(Gdx.files.internal("Hearts_01_64x64_017.png"));
 
-		// Texturas botons inicio
+		// Main screen button textures
 		play = new Texture(Gdx.files.internal("Play_Blue.png"));
 		quit = new Texture(Gdx.files.internal("Quit_blue.png"));
 		hightscores = new Texture(Gdx.files.internal("HighScores_blue.png"));
 		options = new Texture(Gdx.files.internal("Options_blue.png"));
 
-		// Texturas botons PantallaXogo.
+		// Game button textures
 		exit = new Texture(Gdx.files.internal("exit.png"));
 		pause = new Texture(Gdx.files.internal("pause.png"));
 		soundOn = new Texture(Gdx.files.internal("SoundOn.png"));
 		soundOff = new Texture(Gdx.files.internal("SoundOff.png"));
 		back = new Texture(Gdx.files.internal("back.png"));
 
-		// Texturas fondo Options
+		// Options screen textures
 		textureOptions = new Texture(Gdx.files.internal("PantallaOptions.png"));
-		textureOptions2 = new Texture(
-				Gdx.files.internal("PantallaOptions2.png"));
+		textureOptions2 = new Texture(Gdx.files.internal("PantallaOptions2.png"));
 
-		// Textura Game Over.
+		// Game Over texture.
 		over = new Texture(Gdx.files.internal("gameover.png"));
 
-		// Crear as animacions.
-		crearAnimacions();
-
-		// Musica de fondo do xogo
+		// Background music (Game screen and Main screen)
 		musica = Gdx.audio.newMusic(Gdx.files.internal("music.ogg"));
 		musicaP = Gdx.audio.newMusic(Gdx.files.internal("sound.ogg"));
 
-		// Sonidos plins
+		// Miscellaneous sounds
 		sonSelect = Gdx.audio.newSound(Gdx.files.internal("MENU A_Select.ogg"));
 		sonBack = Gdx.audio.newSound(Gdx.files.internal("MENU A - Back.ogg"));
 
-		// Textura 3 2 1 GO!
+		// Texture of -> 3 2 1 GO (e.g. Level 1, Level 2... )!
 		_3 = new Texture(Gdx.files.internal("321go/3.png"));
 		_2 = new Texture(Gdx.files.internal("321go/2.png"));
 		_1 = new Texture(Gdx.files.internal("321go/1.png"));
@@ -164,13 +160,23 @@ public class AssetsXogo {
 		_6 = new Texture(Gdx.files.internal("321go/6.png"));
 		_7 = new Texture(Gdx.files.internal("321go/7.png"));
 
-		// Textura izquierda y derecha click
+		// Gesture textures to move the padle
 		izquierdo = new Texture(Gdx.files.internal("irquierda2.png"));
 		derecho = new Texture(Gdx.files.internal("derecha2.png"));
 
+		// Create the animations
+		crearAnimacions();
+
 	}
 
-	private static void cargarArrayAnim() {
+	/**
+	 * Method that create and array of TextureRegion and add all the textures
+	 * of the head (ball) into the array, saved in the property franesAnimMonte.
+	 *
+	 * @author Sebastián Cabanas
+	 */
+	private static void cargarArrayAnim () 
+	{
 		framesAnimMonte = new TextureRegion[12];
 		framesAnimMonte[0] = monte1;
 		framesAnimMonte[1] = monte2;
@@ -186,16 +192,35 @@ public class AssetsXogo {
 		framesAnimMonte[11] = monte12;
 	}
 
-	private static void crearAnimacions() {
+	/**
+	 * Method that generate the animations of the ball and the head. We can use a head
+	 * or a ball in the game (used as a animated ball).
+	 *
+	 * @author Sebastián Cabanas
+	 */
+	private static void crearAnimacions () 
+	{
 
-		// Bola
-		int num_columnas;
-		int num_filas;
+		/* 
+		 * Using an sprite with diferent printed balls. We are geting each part
+		 * of the sprite and adding it into a TextureRegion array.
+		 */
+		int num_columnas; // columns 
+		int num_filas; // rows
 		TextureRegion[] framesanimacion;
 
-		// Animacion bola.
+		/* 
+		 * TmpBola is an Matrix with 2 dimensions ([][]), we are adding each part 
+		 * of the sprite with the ball textures. 
+		 * Height: 21 and Width: 21
+		 */
 		tmpBola = TextureRegion.split(textureBola, 21, 21);
 
+		/*
+		 * Now we need to transform the matrix of 2 dimensions into an array of a 
+		 * single dimension to work with it.
+		 * 12 columns and 1 row, we have 12 balls in the sprite.
+		 */
 		num_columnas = 12;
 		num_filas = 1;
 		framesanimacion = new TextureRegion[num_columnas * num_filas];
@@ -206,16 +231,25 @@ public class AssetsXogo {
 			}
 		}
 
+		/**
+		 * Create the animations of the ball and the head.
+		 * The first parameter define how much time will wait the program to change
+		 * from a texture to the next texture and the second is the array of Textures.
+		 */
 		animBola = new Animation(1f, framesanimacion);
 
-		// Anim Monte
 		animMonte = new Animation(0.01f, framesAnimMonte);
 	}
 
 	/**
-	 * Metodo encargado de liberar todas as texturas
+	 * Method which dispose all the assets of the game. When the user turn off the game
+	 * we need to dispose all textures and sounds.
+	 *
+	 *@author Sebastián Cabanas
 	 */
-	public static void liberarTexturas() {
+
+	public static void liberarTexturas () 
+	{
 		textureBola.dispose();
 		textureFondo.dispose();
 		texturePaleta.dispose();

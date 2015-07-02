@@ -23,9 +23,7 @@ package com.mygdx.game.Sebas;
  * 
  * */
 
-/**
- * @author Sebastian Cabanas 
- * */
+
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -38,80 +36,190 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.sebasxogo2d.pantallas.Presentacion;
 
+/**
+ * This class is the main class of the game, it inherits from the class
+ * Game of the libgdx API. You need to load the assets on this class (create 
+ * method) and dispose it in the dispose() method.
+ *
+ * @author Sebastián Cabanas 
+ * @version 1.5
+ */
 
 public class MeuXogoGame extends Game {
 	
 	
-  	//Graficos User Interface
+  	// Graphics of user interface
 	public static AssetManager assetManager;
 	public static Skin skin;
-	private boolean  comprobarSon;
+
+	// Sound state controllers
+	private boolean comprobarSon;
 	private boolean soundState;//Estado true -> enabled false ->disabled
+
+	// Preferences of the game
 	private Preferences prefs;
 	public final String arquivoPreferencias = "Preferencias.xml";
 	    
-	//Son cliks
+	// Cliks sounds
 	private Sound sonSelect, sonBack;
     
+    /**
+     * Method which is called when the user turn the application on. It's override 
+     * from the same method of the father class. 
+     * 
+     * @author Sebastián Cabanas
+     */
 	@Override
-	public void create() {
-		//Cargar as texturas do xogo.
+	public void create () 
+	{
+		// Load the assets of the game
 		AssetsXogo.cargarTexturas();
 		
-		//Cargar User interface.
+		/*
+		 * Load User Interface (custom buttons, etc...) using the AssetManager class
+		 * and an Atlas of textures.
+		 */
 		assetManager = new AssetManager();
-	        assetManager.load("uiskin.atlas",TextureAtlas.class);
-	        assetManager.finishLoading();
-	        TextureAtlas atlas = assetManager.get("uiskin.atlas", TextureAtlas.class);
-	        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas); // Cargamos os estilos
+        assetManager.load("uiskin.atlas",TextureAtlas.class);
+        assetManager.finishLoading();
+
+        // Load the styles and the textures in the atlas file.
+        TextureAtlas atlas = assetManager.get("uiskin.atlas", TextureAtlas.class);
+        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas); 
+        
+        /*
+         * 'comprobarSon' works only when the user turn on the application and it's only to
+         * show a dialog with a question to the user. It makes that the application ask to 
+         * the user if he wants to have the sound enabled or not.
+         */ 
+        comprobarSon = true; 
+
+        /* 
+        * When the user turn on the application disabled the sound before the user choose
+        * if he wants the sound enabled or not. Default disabled
+        */
+        soundState = false; 
+        
+        // Load the preferences file
+        prefs = Gdx.app.getPreferences(arquivoPreferencias);
 	        
-	        comprobarSon = true; //Cando inicia o xogo preguntar si queren habilitar son ou non e despois non volver preguntar.
-	        soundState = false; // antes de arrancar a app que non soe a música a menos que lle de na Yes no dialog
-	        
-	        prefs = Gdx.app.getPreferences(arquivoPreferencias);
-	        
+	    // Set the value of the sounds loaded in AssetsXogo class to properties of this class.
 		sonSelect = AssetsXogo.sonSelect;
-	    	sonBack = AssetsXogo.sonBack;
+	    sonBack = AssetsXogo.sonBack;
 	    
-		//Asignar a pantalla a que vai chamar a nosa clase principal (esta clase).
+		// Set the screen to call when the application is turned on.
 		setScreen(new Presentacion(this));	
 		
 	}
 	
-	//Set e get para o estado de sonido, encendido/apagado.
-	public boolean getSoundState(){
+
+	/**
+	 * Get the value of the property 'soundState'. It may be true (Enabled) or 
+	 * false (Disabled).
+	 * 
+	 * @return State of the sound in the game, it may be true(enabled) or false (disabled)
+	 * @author Sebastián Cabanas
+	 */
+
+	public boolean getSoundState ()
+	{
 		return soundState;
 	}
 		
-	public void setSoundState(boolean estado){
+	/**
+	 * Set the value of the property 'soundState'. It can be true (Enabled) or 
+	 * false (Disabled).
+	 * 
+	 * @param estado The new state to set into soundState. 
+	 * @author Sebastián Cabanas
+	 */
+
+	public void setSoundState (boolean estado)
+	{
 		soundState = estado;
 	}
 	
-	public boolean getComprobarSound(){
+
+	/**
+	 * Get the value of the property 'comprobarSound'. This property is used to 
+	 * indicate when the application needs to show a dialog asking to user if he
+	 * want to have the sound Enabled or Disabled.
+	 * 
+	 * @return True if the application needs to shows the dialog or false otherwhise.
+	 * @author Sebastián Cabanas
+	 */
+
+	public boolean getComprobarSound ()
+	{
 		return comprobarSon;
 	}
 	
-	public void setComprobarSound(boolean estado){
+	/**
+	 * Set the value of the property 'comprobarSound'. This property is used to 
+	 * indicate when the application needs to show a dialog asking to user if he
+	 * want to have the sound Enabled or Disabled.
+	 * 
+	 * @param estado The new state to set into comprobarSound. 
+	 * @author Sebastián Cabanas
+	 */
+
+	public void setComprobarSound (boolean estado)
+	{
 		comprobarSon = estado;
 	}
 	
-	public Preferences getPrefs(){
+
+	/**
+	 * Get an object of the class Preferences which allow the developer to have access
+	 * to the preferences file.
+	 * 
+	 * @return Object of the class Preferences 
+	 * @author Sebastián Cabanas
+	 */
+
+	public Preferences getPrefs ()
+	{
 		return prefs;
 	}
 	
-	public Sound sonSelect() {			
-		return sonSelect;
-			
+
+	/**
+	 * Get an object of the class Sound which contains the loaded sound to use when the
+	 * user click in a button 
+	 * 
+	 * @return Object of the class Sound 
+	 * @author Sebastián Cabanas
+	 */
+	public Sound sonSelect () 
+	{			
+		return sonSelect;		
 	}
-	public Sound sonBack() {		
+
+	/**
+	 * Get an object of the class Sound which contains the loaded sound to use when the
+	 * user click in the back button 
+	 * 
+	 * @return Object of the class Sound 
+	 * @author Sebastián Cabanas
+	 */
+	public Sound sonBack () 
+	{		
 		return sonBack;
 	}
+
+	/**
+     * Method which is called when the user turn the application off. It's override 
+     * from the same method of the father class. Dispose all the assets here.
+     * 
+     * @author Sebastián Cabanas
+     */
 	@Override
-	public void dispose() {
-		
-		//Liberar as texturas do xogo.
+	public void dispose () 
+	{	
+		// Dispose the assets of the game
 		AssetsXogo.liberarTexturas();
 		
+		// Dispose the user interface
 		assetManager.dispose();
 		skin.dispose();
 		
