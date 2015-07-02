@@ -92,12 +92,12 @@ public class Creditos implements Screen, InputProcessor {
 		this.meuxogogame = xogo;
 
 		camara2d = new OrthographicCamera();
-	    batch = new SpriteBatch();
-	    fondo = new Texture(Gdx.files.internal("PantallaPrincipal2.png"));
+	    	batch = new SpriteBatch();
+	    	fondo = new Texture(Gdx.files.internal("PantallaPrincipal2.png"));
 	 
-	    bmf = new BitmapFont();
-	    creditos = new StringBuilder();
-	    encherCreditos();
+	    	bmf = new BitmapFont();
+	    	creditos = new StringBuilder();
+	    	encherCreditos();
        
 	}
 
@@ -133,12 +133,12 @@ public class Creditos implements Screen, InputProcessor {
 	{
 		// Default drawing. Empty screem
 		Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_CLEAR_VALUE);
+        	Gdx.gl.glClear(GL20.GL_COLOR_CLEAR_VALUE);
 
-        // Set the color and scale to the the Font and draw the background and text.
+        	// Set the color and scale to the the Font and draw the background and text.
 		batch.begin();
 		 	bmf.setColor(Color.WHITE);
-	        bmf.setScale(1);
+	        	bmf.setScale(1);
 			batch.draw(fondo,0,0,camara2d.viewportWidth,camara2d.viewportHeight);
 			bmf.drawMultiLine(batch, creditos, 0, camara2d.viewportHeight-100);
 		batch.end();
@@ -154,10 +154,10 @@ public class Creditos implements Screen, InputProcessor {
 	public void resize(int width, int height) 
 	{
 		camara2d.setToOrtho(false, Mundo.MUNDO_ANCHO, Mundo.MUNDO_ALTO);
-        camara2d.update();
+        	camara2d.update();
        
-        batch.setProjectionMatrix(camara2d.combined);
-        batch.disableBlending();
+        	batch.setProjectionMatrix(camara2d.combined);
+        	batch.disableBlending();
 	}
 	
 	// Lifecycle Methods
@@ -201,8 +201,8 @@ public class Creditos implements Screen, InputProcessor {
 
 		if (keycode == Keys.BACK) //Android pulsan a tecla de volver.
 		{
-        	meuxogogame.setComprobarSound(false);
-        	meuxogogame.setScreen(new PantallaOptions(meuxogogame));
+	        	meuxogogame.setComprobarSound(false);
+	        	meuxogogame.setScreen(new PantallaOptions(meuxogogame));
 		}
 		return false;
 	}
