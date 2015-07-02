@@ -26,112 +26,133 @@ import com.badlogic.gdx.math.Vector2;
  * */
 
 /**
- * @author Sebastian Cabanas 
+ * A character with a position in the screen, a speed and a size.
+ *
+ * @author Sebastián Cabanas 
+ * @version 1.5
  * */
 
-public abstract class Personaxe {
+public abstract class Personaxe 
+{
+
+        /**
+         * Max. Speed when it's moving
+         */
+        public float velocidade_max;
+
+        /**
+         * Speed
+         */
+        protected float velocidade = 0;
+
+        /**
+         * Position
+         */
+        protected Vector2 posicion;
+
+        /**
+         * Size of the character
+         */
+        protected Vector2 tamano;
  
+
         /**
-         * Constructor por defecto
+         * Default constructor
          */
-        public Personaxe(){
-               
-        }
+        public Personaxe () {}
+
         /**
-         * Instancia unha personaxe
+         * Instance a new character with a size, position in the screen and max. speed
          *
-         * @param posicion
-         * @param tamanho
-         * @param velocidade_max
+         * @param posicion The position in the screen
+         * @param tamanho The size of the character
+         * @param velocidade_max Max. Speed
          */
-        public Personaxe(Vector2 posicion, Vector2 tamano, float velocidade_max) {
+        public Personaxe (Vector2 posicion, Vector2 tamano, float velocidade_max) 
+        {
                 this.posicion = posicion;
                 this.tamano = tamano;
                 this.velocidade_max = velocidade_max;
         }
  
-        /**
-         * Velocidade que toma cando se move.
-         */
-        public float velocidade_max;
-        /**
-         * Velocidade actual
-         */
-        protected float velocidade = 0;
-        /**
-         * Posicion
-         */
-        protected Vector2 posicion;
-        /**
-         * Tamanho
-         */
-        protected Vector2 tamano;
+       
  
         /**
-         * Devolve a posicion
-         * @return posicion
+         * Get the position of the character
+         * @return A Vector2 object with the position
          */
-        public Vector2 getPosicion() {
+        public Vector2 getPosicion () 
+        {
                 return posicion;
         }
  
         /**
-         * Modifica a posicion
-         * @param posicion: a nova posicion
+         * Set a new position to the character using a Vector2 object
+         * @param posicion The new position
          */
-        public void setPosicion(Vector2 posicion) {
+        public void setPosicion (Vector2 posicion) 
+        {
                 this.posicion = posicion;
         }
  
+
         /**
-         * Modifica a posicion
+         * Set a new position to the character using the coordinates x and y
          *
-         * @param x: nova posicion x
-         * @param y: nova posicion y
+         * @param x New position in the axis X
+         * @param y new position in the axis Y
          */
-        public void setPosicion(float x, float y) {
+        public void setPosicion (float x, float y) 
+        {
                 posicion.x = x;
                 posicion.y = y;
         }
  
+
         /**
-         * Modifica a velocidade
-         * @param velocidade: a nova velocidade
+         * Set the speed of the character
+         * @param velocidade The speed of the character
          */
-        public void setVelocidade(float velocidade) {
+        public void setVelocidade (float velocidade) 
+        {
                 this.velocidade = velocidade;
         }
  
+
         /**
-         * Devolve a velocidade
-         * @return velocidade
+         * Get the speed of the character 
+         * @return velocidade The speed
          */
-        public float getVelocidade() {
+        public float getVelocidade () 
+        {
                 return velocidade;
         }
  
+
         /**
-         * Devolve o tamanho
-         * @return tamano
+         * Get the size of the character
+         * @return tamano Size
          */
-        public Vector2 getTamano() {
+        public Vector2 getTamano () 
+        {
                 return tamano;
         }
         
  
         /**
-         * Modifica o tamano
+         * Set the size of the character
          *
-         * @param width: novo tamano de ancho
-         * @param height: novo tamano de alto
+         * @param width The new width of the character
+         * @param height The new height of the character
          */
-        public void setTamano(float width, float height) {
+        public void setTamano(float width, float height) 
+        {
                 this.tamano.set(width,height);
         }
        
         /**
-         * Actualiza a posicion en funcion da velocidade
-         * @param delta: tempo entre unha chamada e a seguinte
+         * Updates the position depending on the speed
+         * @param delta Time between a call and another call to the update.
          */
         public abstract void update(float delta);
 }

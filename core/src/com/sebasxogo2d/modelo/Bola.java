@@ -26,13 +26,26 @@ import com.badlogic.gdx.math.Vector2;
  * */
 
 /**
- * @author Sebastian Cabanas 
+ * A ball which moves around the screem. Inherits from the class 'Personaxe' 
+ * (character of the game)
+ *
+ * @author Sebastián Cabanas 
+ * @version 1.5
  * */
 
 public class Bola extends Personaxe {
 	
+	/**
+	 * Constructor which sets the values in the parameters to the properties 
+	 * inherited from the father class. 
+	 *
+	 * @param posicion A Vector2 object which indicates what is the position of the ball
+	 * @param tamano A Vector2 object which indicates the size of the ball. Vector2(width,height)
+	 * @param velocidade_max Max. speed of the ball (moving around the screem). It increases as 
+	 * levels rise
+	 */
 	public Bola(Vector2 posicion, Vector2 tamano, float velocidade_max) {
-         super(posicion, tamano, velocidade_max);
+        super(posicion, tamano, velocidade_max);
 	}
 	
 	@Override

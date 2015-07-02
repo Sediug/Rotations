@@ -26,26 +26,35 @@ import com.badlogic.gdx.math.Vector2;
  * */
 
 /**
- * @author Sebastian Cabanas 
- * Define todo o que forma o noso xogo e definiremos o tamanho da nosa pantalla ou mundo (o xogo).
- *  
- */
+ * The world where the game is played. In the beginning I was thinking to do other kind
+ * of game, It's the reason of this class.
+ *
+ * @author Sebastián Cabanas 
+ * @version 1.5
+ * */
 public class Mundo {
 	
-    public static final int MUNDO_ANCHO=300;//Relacion 0.6 respecto 600x1000
+    /**
+     * The width (MUNDO_ANCHO) and the height (MUNDO_ALTO) of the world (screen)
+     */
+    public static final int MUNDO_ANCHO=300;
     public static final int MUNDO_ALTO=500;
     
-    
+    // A ball
     private Bola bola;
-    private Vector2 posicionBola = new Vector2(100,20); 
-    private Vector2 tamanoBola =  new Vector2(10,10);
-    private float velocidadeBola= 100;
     
     
-    
-    public Mundo(){
-    	bola = new Bola(posicionBola, tamanoBola, velocidadeBola);
-    	
+    /**
+     * Instance a new world to the game with a size and a ball.
+     *
+     * @author Sebastián Cabanas
+     */
+    public Mundo()
+    {
+        Vector2 posicionBola = new Vector2(100,20);
+        Vector2 tamanoBola =  new Vector2(10,10);
+        float velocidadeBola= 100;
+    	bola = new Bola(posicionBola, tamanoBola, velocidadeBola);	
     }
    
     
