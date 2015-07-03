@@ -63,12 +63,12 @@ public class MeuXogoGame extends Game {
 	// Cliks sounds
 	private Sound sonSelect, sonBack;
     
-    /**
-     * Method which is called when the user turn the application on. It's override 
-     * from the same method of the father class. 
-     * 
-     * @author Sebastián Cabanas
-     */
+        /**
+        * Method which is called when the user turn the application on. It's override 
+        * from the same method of the father class. 
+        * 
+        * @author Sebastián Cabanas
+        */
 	@Override
 	public void create () 
 	{
@@ -80,32 +80,32 @@ public class MeuXogoGame extends Game {
 		 * and an Atlas of textures.
 		 */
 		assetManager = new AssetManager();
-        assetManager.load("uiskin.atlas",TextureAtlas.class);
-        assetManager.finishLoading();
+        	assetManager.load("uiskin.atlas",TextureAtlas.class);
+        	assetManager.finishLoading();
 
-        // Load the styles and the textures in the atlas file.
-        TextureAtlas atlas = assetManager.get("uiskin.atlas", TextureAtlas.class);
-        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas); 
-        
-        /*
-         * 'comprobarSon' works only when the user turn on the application and it's only to
-         * show a dialog with a question to the user. It makes that the application ask to 
-         * the user if he wants to have the sound enabled or not.
-         */ 
-        comprobarSon = true; 
-
-        /* 
-        * When the user turn on the application disabled the sound before the user choose
-        * if he wants the sound enabled or not. Default disabled
-        */
-        soundState = false; 
-        
-        // Load the preferences file
-        prefs = Gdx.app.getPreferences(arquivoPreferencias);
+	        // Load the styles and the textures in the atlas file.
+	        TextureAtlas atlas = assetManager.get("uiskin.atlas", TextureAtlas.class);
+	        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas); 
 	        
-	    // Set the value of the sounds loaded in AssetsXogo class to properties of this class.
+	        /*
+	         * 'comprobarSon' works only when the user turn on the application and it's only to
+	         * show a dialog with a question to the user. It makes that the application ask to 
+	         * the user if he wants to have the sound enabled or not.
+	         */ 
+	        comprobarSon = true; 
+	
+	        /* 
+	        * When the user turn on the application disabled the sound before the user choose
+	        * if he wants the sound enabled or not. Default disabled
+	        */
+	        soundState = false; 
+	        
+	        // Load the preferences file
+	        prefs = Gdx.app.getPreferences(arquivoPreferencias);
+	        
+		// Set the value of the sounds loaded in AssetsXogo class to properties of this class.
 		sonSelect = AssetsXogo.sonSelect;
-	    sonBack = AssetsXogo.sonBack;
+	    	sonBack = AssetsXogo.sonBack;
 	    
 		// Set the screen to call when the application is turned on.
 		setScreen(new Presentacion(this));	
@@ -208,11 +208,11 @@ public class MeuXogoGame extends Game {
 	}
 
 	/**
-     * Method which is called when the user turn the application off. It's override 
-     * from the same method of the father class. Dispose all the assets here.
-     * 
-     * @author Sebastián Cabanas
-     */
+     	 * Method which is called when the user turn the application off. It's override 
+	 * from the same method of the father class. Dispose all the assets here.
+	 * 
+	 * @author Sebastián Cabanas
+	 */
 	@Override
 	public void dispose () 
 	{	
