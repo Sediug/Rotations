@@ -50,43 +50,44 @@ import com.sebasxogo2d.modelo.Mundo;
 public class Creditos implements Screen, InputProcessor {
 	
 	/**
-     * Var to store a instance of the main class
-     */
+         * Var to store a instance of the main class
+         */
 	private MeuXogoGame meuxogogame;
 
 	/**
-     * An Orthographic Camera in 2 dimensions 
-     */
+         * An Orthographic Camera in 2 dimensions 
+         */
 	private OrthographicCamera camara2d;
 
 	/**
-     * SpriteBach to draw the textures in the screem
-     */
+         * SpriteBach to draw the textures in the screem
+         */
 	private SpriteBatch batch;
 
 	/**
-     * Texture for background
-     */
+         * Texture for background
+         */
 	private Texture fondo;
 
 	/**
-     * A string which have all the text of the credits
-     */
+         * A string which have all the text of the credits
+         */
 	private StringBuilder creditos;
 
 	/**
-     * The font to write in the screen
-     */
+         * The font to write in the screen
+         */
 	private BitmapFont bmf;
 	
 	
 	/**
-     * Constructor which receive an object of the main class, initialize and create objects
-     * for the properties of this class. 
-     *
-     * @param xogo A instance of the main class
-     * @author Sebastián Cabanas
-     */
+         * Constructor which receive an object of the main class, initialize and create objects
+         * for the properties of this class. 
+         *
+         * @param xogo A instance of the main class
+         * @author Sebastián Cabanas
+         */
+         
 	public Creditos (MeuXogoGame xogo)
 	{
 		this.meuxogogame = xogo;
@@ -103,10 +104,10 @@ public class Creditos implements Screen, InputProcessor {
 
 
 	/**
-     * Write the text of the credits screen into the property creditos.
-     *
-     * @author Sebastián Cabanas
-     */
+         * Write the text of the credits screen into the property creditos.
+         *
+         * @author Sebastián Cabanas
+         */
 	public void encherCreditos () 
 	{
 		creditos.append("Created and edited by Sebastian Cabanas \n\n");
@@ -145,11 +146,11 @@ public class Creditos implements Screen, InputProcessor {
 	}
 
 	/**
-     * Update the size on each update.
-     *
-     * @param width
-     * @param heigt
-     */
+         * Update the size on each update.
+         *
+         * @param width
+         * @param heigt
+         */
 	@Override
 	public void resize(int width, int height) 
 	{
