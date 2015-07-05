@@ -53,29 +53,29 @@ import com.sebasxogo2d.modelo.Mundo;
 public class PantallaMarcadores implements Screen, InputProcessor 
 {
 	/**
-     * Var to store a instance of the main class
-     */
+         * Var to store a instance of the main class
+         */
 	private MeuXogoGame meuxogogame;
 
-	/**
-     * An Orthographic Camera in 2 dimensions 
-     */
+     	/**
+     	 * An Orthographic Camera in 2 dimensions 
+     	 */
 	private OrthographicCamera camara2d;
 
 	/**
-     * SpriteBach to draw the textures in the screem
-     */
+     	 * SpriteBach to draw the textures in the screem
+     	 */
 	private SpriteBatch batch;
 
 	/**
-     * Texture for background
-     */
+     	 * Texture for background
+    	 */
 	private static Texture fondo;
 
 	/**
-     * Rectangles which represents the finger when it touch the screen and the button back, 
-     * this restangles are used to check the intersection between the finger and the button
-     */
+     	 * Rectangles which represents the finger when it touch the screen and the button back, 
+     	 * this restangles are used to check the intersection between the finger and the button
+     	 */
 	private Rectangle dedo, boton;
 	
 	/**
@@ -122,45 +122,46 @@ public class PantallaMarcadores implements Screen, InputProcessor
 	private final float VOLUMENSON_ANDROID = 1f;
 	
 	/**
-     * Constructor which receive an object of the main class, initialize and create objects
-     * for the properties of this class. 
-     *
-     * @param xogo A instance of the main class
-     * @author Sebastián Cabanas
-     */
+     	 * Constructor which receive an object of the main class, initialize and create objects
+    	 * for the properties of this class. 
+     	 *
+     	 * @param xogo A instance of the main class
+     	 * @author Sebastián Cabanas
+    	  */
 
-	public PantallaMarcadores(MeuXogoGame xogo){
+	public PantallaMarcadores (MeuXogoGame xogo)
+	{
 		this.meuxogogame = xogo;
 		
 		camara2d = new OrthographicCamera();
-        batch = new SpriteBatch();
-        fondo = new Texture(Gdx.files.internal("PantallaScore.png"));
-        dedo = new Rectangle();
-        boton = new Rectangle();
-        
-        // Preferences to load the Scores
-        prefs = meuxogogame.getPrefs();
-        cargarPuntActuales();
-        
-        // Write settings.
-        bitMapFont = new BitmapFont();
+	        batch = new SpriteBatch();
+	        fondo = new Texture(Gdx.files.internal("PantallaScore.png"));
+	        dedo = new Rectangle();
+	        boton = new Rectangle();
+	        
+	        // Preferences to load the Scores
+	        prefs = meuxogogame.getPrefs();
+	        cargarPuntActuales();
+	        
+	        // Write settings.
+	        bitMapFont = new BitmapFont();
 		bitMapFont.setColor(Color.BLUE);
-    	bitMapFont.setScale(1.5f);
+    		bitMapFont.setScale(1.5f);
 	}
 
 
 	/**
-     * Method who play a sound when the user choose to go back. This method calls to the method
-     * of the main class 'sonBack()' (which load this sound) and set the volume to the value 
-     * assigned on the property VOLUMENSON. 
-     *
-     * The method 'sonBack()' return an object of the class Sound, this class have the method 
-     * setVolume() where you can set the volume and indicatea to play the sound.
-     *
-     * @author Sebastián Cabanas
-     */
-
-	public void playSonBack() 
+     	 * Method who play a sound when the user choose to go back. This method calls to the method
+     	 * of the main class 'sonBack()' (which load this sound) and set the volume to the value 
+     	 * assigned on the property VOLUMENSON. 
+     	 *
+     	 * The method 'sonBack()' return an object of the class Sound, this class have the method 
+     	 * setVolume() where you can set the volume and indicatea to play the sound.
+     	 *
+    	 * @author Sebastián Cabanas
+     	 */
+     
+	public void playSonBack () 
 	{
 		// It works only when the sound is enabled and the version of the App is PC or WEB
 		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android"))
@@ -214,7 +215,7 @@ public class PantallaMarcadores implements Screen, InputProcessor
 			batch.draw(AssetsXogo.back, X, Y, ANCHOBUTTON, ALTOBUTTON);
 			
 			// Call to the method which print the scores
-		    pintarPuntuacions();
+			pintarPuntuacions();
 		batch.end();
 
 	}
@@ -243,11 +244,11 @@ public class PantallaMarcadores implements Screen, InputProcessor
 
 	
 	/**
-     * Update the size on each update.
-     *
-     * @param width
-     * @param heigt
-     */
+    	 * Update the size on each update.
+     	 *
+     	 * @param width
+     	 * @param heigt
+     	 */
 
 	@Override
 	public void resize (int width, int height) 
@@ -332,23 +333,23 @@ public class PantallaMarcadores implements Screen, InputProcessor
 		// Translate the coordinates of the screen to the camera2d coordinates
 		Vector3 vecTemporal = new Vector3();
 		vecTemporal.set(screenX,screenY,0);
-        camara2d.unproject(vecTemporal);
+        	camara2d.unproject(vecTemporal);
 
-        // Set the size and coordinates of finger and the button back.
-        dedo.set(vecTemporal.x,vecTemporal.y,2, 2);
-    	boton.set(X, Y, ANCHOBUTTON, ALTOBUTTON);
-        
-        /*
-         * If there is an intersection between the finger who touch the screen and the 
-         * button ( BACK ). When it happens then play the sound BACK and call the main
-         * screen.
-         */
-        if (Intersector.overlaps(dedo, boton)) 
-        {
-        	playSonBack();
-        	meuxogogame.setComprobarSound(false);
-        	meuxogogame.setScreen(new Presentacion(meuxogogame));
-        }
+	        // Set the size and coordinates of finger and the button back.
+	        dedo.set(vecTemporal.x,vecTemporal.y,2, 2);
+	    	boton.set(X, Y, ANCHOBUTTON, ALTOBUTTON);
+	        
+	        /*
+	         * If there is an intersection between the finger who touch the screen and the 
+	         * button ( BACK ). When it happens then play the sound BACK and call the main
+	         * screen.
+	         */
+	        if (Intersector.overlaps(dedo, boton)) 
+	        {
+	        	playSonBack();
+	        	meuxogogame.setComprobarSound(false);
+	        	meuxogogame.setScreen(new Presentacion(meuxogogame));
+	        }
         
 		return false;
 	}
