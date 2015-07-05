@@ -23,10 +23,6 @@ package com.sebasxogo2d.pantallas;
  * 
  * */
 
-/**
- * @author Sebastian Cabanas 
- * */
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Preferences;
@@ -44,26 +40,80 @@ import com.mygdx.game.Sebas.AssetsXogo;
 import com.mygdx.game.Sebas.MeuXogoGame;
 import com.sebasxogo2d.modelo.Mundo;
 
+/**
+ * The screen where the user can change the settings of the game.
+ * Implements the interface Screen to use the render, resize and the lifecycle methods.
+ *
+ * @author Sebastián Cabanas 
+ * @version 1.5
+ * */
+
 public class PantallaOptions implements Screen {
 	
+	/**
+     * Var to store a instance of the main class
+     */
 	private MeuXogoGame meuxogogame;
+
+	/**
+     * An Orthographic Camera in 2 dimensions 
+     */
 	private OrthographicCamera camara2d;
+
+	/**
+     * SpriteBach to draw the textures in the screem
+     */
 	private SpriteBatch batch;
-	private boolean changes;//Cambiar fondo si hay cambios sen gardar.
+
+	/**
+     * If the user changes something in the settings
+     */
+	private boolean changes;
 	
-	//Preferencias 
+	/**
+     * Preferences to load the saved settings
+     */ 
 	private Preferences prefs;
 
 	
-	//UI
+	// User Interface properties.
+
+	/**
+	 * The stage handles the viewport and distributes input events.
+	 */
   	private Stage stage;
+
+  	/**
+  	 * The skin to use for this user interface.
+  	 *
+	 * The Skin class stores resources for UI widgets to use. It is a convenient container 
+	 * for texture regions, ninepatches, fonts, colors, etc. Skin also provides convenient 
+	 * conversions, such as retrieving a texture region as a ninepatch, sprite, or drawable.
+	 */
   	private Skin skin = MeuXogoGame.skin;
+
+  	/**
+  	 * Select boxes to select the language, dificult level, etc.
+  	 */
   	private SelectBox<String> lista, sound, languaje;
+
+  	/**
+  	 * Diferent text to use in the UI
+  	 */
   	private TextField left, right;
+
+  	/**
+  	 * The id's of the selected items in the select boxes
+  	 */
   	private int idLista, idSound, idLanguaje;
+
+  	/**
+  	 * Settings saved as a preferences.
+  	 */
   	private String nivel, prefLeft, prefRight, estado; // Preferencias
   	
-  	//Ui pos // tamaño
+  	// Ui sizes and positions
+
   	private final float xSBox = (float) (Gdx.graphics.getWidth()/1.7);
   	private final float yLista = (float) (Gdx.graphics.getHeight()/1.33);
   	private final float ySound = (float) (Gdx.graphics.getHeight()/1.59);
@@ -78,55 +128,86 @@ public class PantallaOptions implements Screen {
   	private final float anchoSB = Gdx.graphics.getHeight()/6, alto = Gdx.graphics.getHeight()/20;
 	private final float ANCHO = Gdx.graphics.getHeight()/9, ALTO = Gdx.graphics.getHeight()/25;
 	
-	// Volumen
+	/**
+	 * Volume of the sound in the PC version and Web version
+	 */
 	private final float volumenSon = 0.2f;
+
+	/**
+	 * Volume of the sound in the ANDROID version
+	 */
 	private final float volumenSonAndroid = 1f;
-  	
+
+
+  	/**
+     * Constructor which receive an object of the main class, initialize and create objects
+     * for the properties of this class. 
+     *
+     * @param xogo A instance of the main class
+     * @author Sebastián Cabanas
+     */
 	public PantallaOptions(MeuXogoGame xogo) {
 		
 		this.meuxogogame = xogo;
-		
+
 		camara2d = new OrthographicCamera();
         batch = new SpriteBatch();
         changes = false;
         
-        //Preferencias / Puntuacions
+        // Use the preferences loaded in the man class.
         prefs = meuxogogame.getPrefs();
         
         //User interface
-        stage = new Stage(){
+        stage = new Stage ()
+        {
             @Override
-            public boolean keyDown(int keyCode) {// Back android.
-            if (keyCode == Keys.BACK) {
-            	playSonBack();
-            	meuxogogame.setComprobarSound(false);
-            	meuxogogame.setScreen(new Presentacion(meuxogogame));    
+            public boolean keyDown (int keyCode) // Back android.
+            {
+	            if (keyCode == Keys.BACK) {
+	            	playSonBack();
+	            	meuxogogame.setComprobarSound(false);
+	            	meuxogogame.setScreen(new Presentacion(meuxogogame));    
+	            }
+	            
+	            return super.keyDown(keyCode);
             }
-            return super.keyDown(keyCode);
-            }
-    };
+    	};
+
+    	// Load the Options panel
         cargarPanelOptions(); 
+
+        // Load the preferences to set in the Options panel.
         cargarPrefs();
 	}
 	
-	public void playSonBack() {
-		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android")){
+	public void playSonBack () 
+	{
+
+		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonBack().setVolume(meuxogogame.sonBack().play(), volumenSon);
 		}
 			
-		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android")){
+		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonBack().setVolume(meuxogogame.sonBack().play(), volumenSonAndroid);
 		}
+
 	}
 	
-	public void playSonSelect() {
-		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android")){
+	public void playSonSelect() 
+	{
+		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonSelect().setVolume(meuxogogame.sonSelect().play(), volumenSon);
 		}
-		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android")){
+
+		else if (meuxogogame.getSoundState() && Gdx.app.getType().name().equalsIgnoreCase("android"))
+		{
 			meuxogogame.sonSelect().setVolume(meuxogogame.sonSelect().play(), volumenSonAndroid);
 		}
 	}
+	
 	private void cargarPanelOptions() {
 
 		lista = new SelectBox<String>(skin) ;
