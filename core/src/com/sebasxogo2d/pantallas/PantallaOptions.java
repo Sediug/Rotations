@@ -44,35 +44,35 @@ import com.sebasxogo2d.modelo.Mundo;
  * The screen where the user can change the settings of the game.
  * Implements the interface Screen to use the render, resize and the lifecycle methods.
  *
- * @author Sebastián Cabanas 
+ * @author SebastiÃ¡n Cabanas 
  * @version 1.5
  * */
 
 public class PantallaOptions implements Screen {
 	
 	/**
-     * Var to store a instance of the main class
-     */
+         * Var to store a instance of the main class
+         */
 	private MeuXogoGame meuxogogame;
 
 	/**
-     * An Orthographic Camera in 2 dimensions 
-     */
+         * An Orthographic Camera in 2 dimensions 
+         */
 	private OrthographicCamera camara2d;
 
 	/**
-     * SpriteBach to draw the textures in the screem
-     */
+         * SpriteBach to draw the textures in the screem
+         */
 	private SpriteBatch batch;
 
 	/**
-     * If the user changes something in the settings
-     */
+         * If the user changes something in the settings
+         */
 	private boolean changes;
 	
 	/**
-     * Preferences to load the saved settings
-     */ 
+         * Preferences to load the saved settings
+         */ 
 	private Preferences prefs;
 
 	
@@ -140,44 +140,44 @@ public class PantallaOptions implements Screen {
 
 
   	/**
-     * Constructor which receive an object of the main class, initialize and create objects
-     * for the properties of this class. 
-     *
-     * @param xogo A instance of the main class
-     * @author Sebastián Cabanas
-     */
+         * Constructor which receive an object of the main class, initialize and create objects
+         * for the properties of this class. 
+         *
+         * @param xogo A instance of the main class
+         * @author SebastiÃ¡n Cabanas
+         */
 	public PantallaOptions(MeuXogoGame xogo) {
 		
 		this.meuxogogame = xogo;
 
 		camara2d = new OrthographicCamera();
-        batch = new SpriteBatch();
-        changes = false;
+        	batch = new SpriteBatch();
+        	changes = false;
         
-        // Use the preferences loaded in the man class.
-        prefs = meuxogogame.getPrefs();
-        
-        //User interface
-        stage = new Stage ()
-        {
-            @Override
-            public boolean keyDown (int keyCode) // Back android.
-            {
-	            if (keyCode == Keys.BACK) {
-	            	playSonBack();
-	            	meuxogogame.setComprobarSound(false);
-	            	meuxogogame.setScreen(new Presentacion(meuxogogame)); // Back to main screen    
+	        // Use the preferences loaded in the man class.
+	        prefs = meuxogogame.getPrefs();
+	        
+	        //User interface
+	        stage = new Stage ()
+	        {
+	            @Override
+	            public boolean keyDown (int keyCode) // Back android.
+	            {
+		            if (keyCode == Keys.BACK) {
+		            	playSonBack();
+		            	meuxogogame.setComprobarSound(false);
+		            	meuxogogame.setScreen(new Presentacion(meuxogogame)); // Back to main screen    
+		            }
+		            
+		            return super.keyDown(keyCode);
 	            }
-	            
-	            return super.keyDown(keyCode);
-            }
-    	};
+	    	};
 
-    	// Load the Options panel
-        cargarPanelOptions(); 
-
-        // Load the preferences to set in the Options panel.
-        cargarPrefs();
+	    	// Load the Options panel
+	        cargarPanelOptions(); 
+	
+	        // Load the preferences to set in the Options panel.
+	        cargarPrefs();
 	}
 	
 	/**
@@ -188,7 +188,7 @@ public class PantallaOptions implements Screen {
      	 * The method 'sonBack()' return an object of the class Sound, this class have the method 
      	 * setVolume() where you can set the volume and indicatea to play the sound.
      	 *
-    	 * @author Sebastián Cabanas
+    	 * @author SebastiÃ¡n Cabanas
      	 */
 	public void playSonBack () 
 	{
@@ -205,6 +205,9 @@ public class PantallaOptions implements Screen {
 		}
 
 	}
+	
+	
+	
 	/**
      	 * Method who play a sound when the user click in a button (Play, Options...). This method calls to the method
      	 * of the main class 'sonSelect()' (which load this sound) and set the volume to the value 
@@ -213,7 +216,7 @@ public class PantallaOptions implements Screen {
      	 * The method 'sonSelect()' return an object of the class Sound, this class have the method 
      	 * setVolume() where you can set the volume and indicatea to play the sound.
      	 *
-    	 * @author Sebastián Cabanas
+    	 * @author SebastiÃ¡n Cabanas
      	 */
 
 	public void playSonSelect() 
@@ -230,135 +233,135 @@ public class PantallaOptions implements Screen {
 	}
 	
 	/**
-	 	 * Method which create all the element of the options panel using the classes of
-	 	 * the UI. 
-	 	 *
-		 * @author Sebastián Cabanas
-	 	 */
+	 * Method which create all the element of the options panel using the classes of
+	 * the UI. 
+	 *
+	 * @author SebastiÃ¡n Cabanas
+	 */
 	private void cargarPanelOptions() {
 
 		// Select Box with dificulty
 		lista = new SelectBox<String>(skin) ;
-        lista.setItems("Easy","Normal", "Kappa");
+        	lista.setItems("Easy","Normal", "Kappa");
 		lista.setBounds(xSBox,yLista, anchoSB, alto);
-        lista.setPosition(xSBox,yLista);
+        	lista.setPosition(xSBox,yLista);
         
-        // Select box which allows the user to choose if want the sound enabled or not
-        sound = new SelectBox<String>(skin) ;
-        sound.setItems("Enabled", "Disabled");
+	        // Select box which allows the user to choose if want the sound enabled or not
+	        sound = new SelectBox<String>(skin) ;
+	        sound.setItems("Enabled", "Disabled");
 		sound.setBounds(xSBox,ySound, anchoSB, alto);
-        sound.setPosition(xSBox,ySound);
+	 	sound.setPosition(xSBox,ySound);
         
-        // Select box which allows the user to choose the language
-        languaje = new SelectBox<String>(skin) ;
-        languaje.setItems("English");
+	        // Select box which allows the user to choose the language
+	        languaje = new SelectBox<String>(skin) ;
+	        languaje.setItems("English");
 		languaje.setBounds(xSBox,yLang, anchoSB, alto);
-        languaje.setPosition(xSBox,yLang);
+        	languaje.setPosition(xSBox,yLang);
         
-        // Text field which allows the user to input a new Key for move the paddle to the left
-        // (PC version)
-        left = new TextField("", skin);
+	        // Text field which allows the user to input a new Key for move the paddle to the left
+	        // (PC version)
+	        left = new TextField("", skin);
 		left.setBounds(xLeft,yText, alto, alto);
         
-        // Text field which allows the user to input a new Key for move the paddle to the right
-        // (PC version)
-        right = new TextField("", skin);
-        right.setBounds(xRigth,yText, alto, alto);
+	        // Text field which allows the user to input a new Key for move the paddle to the right
+	        // (PC version)
+	        right = new TextField("", skin);
+	        right.setBounds(xRigth,yText, alto, alto);
         
-        // Button to save the changes
-        TextButton save = new TextButton("Save",skin);
-        save.setBounds(saveX, buttonsY,ANCHO, ALTO);
-        save.scaleBy(2);
+	        // Button to save the changes
+	        TextButton save = new TextButton("Save",skin);
+	        save.setBounds(saveX, buttonsY,ANCHO, ALTO);
+	        save.scaleBy(2);
+	        
+	        // Listener to the button 'Save'. 
+	        save.addListener(
+	        	new InputListener() 
+	        	{
+		            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) 
+		            {
+		            	gardarDatos(); // Save the changes
+		            	playSonSelect(); // Play the sound of when you click a button
+		            	changes = false;// All changes saved, then there is any not changes to save.
+		            	cargarPrefs(); // Load the preferences
+		                return true;
+		            }
+	        	}
+	        );
+	        
+	        // Button for back to the main screen
+	        TextButton back = new TextButton("Back",skin);
+	        back.setBounds(backX, buttonsY,ANCHO, ALTO);
+	        back.scaleBy(2);
+	
+	        // Listener to the button 'Back'
+	        back.addListener(
+	        	new InputListener() 
+	        	{
+		            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) 
+		            {
+		            	playSonBack();
+		            	meuxogogame.setComprobarSound(false);
+		            	meuxogogame.setScreen(new Presentacion(meuxogogame));
+		                return true;
+		            }
+	        	}
+	        );
+	        
+	        // Button for restore the settings to default 
+	        TextButton restore = new TextButton("Restore",skin);
+	        restore.setBounds(restoreX, buttonsY,ANCHO, ALTO);
+	        restore.scaleBy(2);
+	
+	        // Listener to the button 'Restore Default'
+	        restore.addListener(
+	        	new InputListener() 
+	        	{
+		            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) 
+		            {
+		            	// We will back to the default settings and then allow the user to save this settings
+		            	changes = true; 
+		            	setToDefault();
+		                return true;
+		            }
+	        	}
+	        );
         
-        // Listener to the button 'Save'. 
-        save.addListener(
-        	new InputListener() 
-        	{
-	            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) 
-	            {
-	            	gardarDatos(); // Save the changes
-	            	playSonSelect(); // Play the sound of when you click a button
-	            	changes = false;// All changes saved, then there is any not changes to save.
-	            	cargarPrefs(); // Load the preferences
-	                return true;
-	            }
-        	}
-        );
-        
-        // Button for back to the main screen
-        TextButton back = new TextButton("Back",skin);
-        back.setBounds(backX, buttonsY,ANCHO, ALTO);
-        back.scaleBy(2);
-
-        // Listener to the button 'Back'
-        back.addListener(
-        	new InputListener() 
-        	{
-	            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) 
-	            {
-	            	playSonBack();
-	            	meuxogogame.setComprobarSound(false);
-	            	meuxogogame.setScreen(new Presentacion(meuxogogame));
-	                return true;
-	            }
-        	}
-        );
-        
-        // Button for restore the settings to default 
-        TextButton restore = new TextButton("Restore",skin);
-        restore.setBounds(restoreX, buttonsY,ANCHO, ALTO);
-        restore.scaleBy(2);
-
-        // Listener to the button 'Restore Default'
-        restore.addListener(
-        	new InputListener() 
-        	{
-	            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) 
-	            {
-	            	// We will back to the default settings and then allow the user to save this settings
-	            	changes = true; 
-	            	setToDefault();
-	                return true;
-	            }
-        	}
-        );
-        
-        // Button for show the credits screen
-        TextButton credits = new TextButton("Credits",skin);
-        credits.setBounds(saveX, buttonsY-Gdx.graphics.getHeight()/12,ANCHO, ALTO);
-        credits.scaleBy(2);
-
-        // Listener to the button 'Credits'
-        credits.addListener(
-        	new InputListener() 
-        	{
-	            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) 
-	            {
-	            	playSonSelect();
-	            	meuxogogame.setScreen(new Creditos(meuxogogame));
-	                return true;
-	            }
-        	}
-        );
-        
-        // Add all actors to the stage. Stage handles the viewport and distributes input events
-        stage.addActor(credits);
-        stage.addActor(back);
-        stage.addActor(save);
-        stage.addActor(restore);
-        stage.addActor(sound);
-        stage.addActor(lista);
-        stage.addActor(languaje);
-        stage.addActor(left);
-        stage.addActor(right);
+	        // Button for show the credits screen
+	        TextButton credits = new TextButton("Credits",skin);
+	        credits.setBounds(saveX, buttonsY-Gdx.graphics.getHeight()/12,ANCHO, ALTO);
+	        credits.scaleBy(2);
+	
+	        // Listener to the button 'Credits'
+	        credits.addListener(
+	        	new InputListener() 
+	        	{
+		            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) 
+		            {
+		            	playSonSelect();
+		            	meuxogogame.setScreen(new Creditos(meuxogogame));
+		                return true;
+		            }
+	        	}
+	        );
+	        
+	        // Add all actors to the stage. Stage handles the viewport and distributes input events
+	        stage.addActor(credits);
+	        stage.addActor(back);
+	        stage.addActor(save);
+	        stage.addActor(restore);
+	        stage.addActor(sound);
+	        stage.addActor(lista);
+	        stage.addActor(languaje);
+	        stage.addActor(left);
+	        stage.addActor(right);
         
 	}
 
 	/**
-	 	 * Method which check if there are some changes from the saved settings. 
-	 	 *
-		 * @author Sebastián Cabanas
-	 	 */
+	 * Method which check if there are some changes from the saved settings. 
+	 *
+	 * @author SebastiÃ¡n Cabanas
+	 */
 
 	public void checkIn() {
 		idLista = lista.getSelectedIndex();
@@ -392,25 +395,22 @@ public class PantallaOptions implements Screen {
 		
 		// Draw the user interface
 		stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
-        
-
+		stage.draw();
 	}
 	
-
 
 	@Override
 	public void resize(int width, int height) {
 		camara2d.setToOrtho(false, Mundo.MUNDO_ANCHO, Mundo.MUNDO_ALTO);
-        camara2d.update();
-       
-        batch.setProjectionMatrix(camara2d.combined);
-        batch.enableBlending();
-        
-        stage.getViewport().update(width, height, true);
+	        camara2d.update();
+	       
+	        batch.setProjectionMatrix(camara2d.combined);
+	        batch.enableBlending();
+	        
+	        stage.getViewport().update(width, height, true);
 	}
+	
 	@Override
-
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
 	}
@@ -442,10 +442,10 @@ public class PantallaOptions implements Screen {
 	}
 
 	/**
-	 	 * Method which load the saved preferences of the application. 
-	 	 *
-		 * @author Sebastián Cabanas
-	 	 */
+	 * Method which load the saved preferences of the application. 
+	 *
+	 * @author SebastiÃ¡n Cabanas
+	 */
 
 	public void cargarPrefs(){
 
@@ -477,10 +477,10 @@ public class PantallaOptions implements Screen {
 	}
 
 	/**
-	 	 * Method which save the settings in the preference file. 
-	 	 *
-		 * @author Sebastián Cabanas
-	 	 */
+	 * Method which save the settings in the preference file. 
+	 *
+	 * @author SebastiÃ¡n Cabanas
+	 */
 
 	public void gardarDatos() {
 
@@ -520,19 +520,19 @@ public class PantallaOptions implements Screen {
 	}
 
 	/**
-	 	 * Method which set all settings to default.
-	 	 *
-		 * @author Sebastián Cabanas
-	 	 */
+	 * Method which set all settings to default.
+	 *
+	 * @author SebastiÃ¡n Cabanas
+	 */
 
 	public void setToDefault() {
 		lista.setSelected("Easy");
-    	sound.setSelected("Disabled");
-    	left.setText("");
-    	right.setText("");
-    	
-    	prefs.putString("controisLeft", "left");
-    	prefs.putString("controisRight", "right");
-    	prefs.flush();
+	    	sound.setSelected("Disabled");
+	    	left.setText("");
+	    	right.setText("");
+	    	
+	    	prefs.putString("controisLeft", "left");
+	    	prefs.putString("controisRight", "right");
+	    	prefs.flush();
 	}
 }
