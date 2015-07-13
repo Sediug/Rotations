@@ -94,7 +94,7 @@ public class Creditos implements Screen, InputProcessor {
 
 		camara2d = new OrthographicCamera();
 	    	batch = new SpriteBatch();
-	    	fondo = new Texture(Gdx.files.internal("PantallaPrincipal2.png"));
+	    	fondo = new Texture(Gdx.files.internal("CreditsScreen.png"));
 	 
 	    	bmf = new BitmapFont();
 	    	creditos = new StringBuilder();
@@ -119,7 +119,7 @@ public class Creditos implements Screen, InputProcessor {
 		creditos.append("Nicolae Berbece\n");
 		creditos.append("Hawkadium  --- http://hawkadium.blogspot.ca/ \n");
 		creditos.append("GameArtForge\n\n");
-		creditos.append("Expecial thanks to OpenGameArt.org for give\n");
+		creditos.append("Special thanks to OpenGameArt.org for provide\n");
 		creditos.append("me numerous graphics and sounds which\n");
 		creditos.append("I could use to develop the game\n");
 	}
@@ -138,10 +138,10 @@ public class Creditos implements Screen, InputProcessor {
 
         	// Set the color and scale to the the Font and draw the background and text.
 		batch.begin();
-		 	bmf.setColor(Color.WHITE);
-	        	bmf.setScale(1);
+		 	//bmf.setColor(Color.WHITE);
+	        	//bmf.setScale(1);
 			batch.draw(fondo,0,0,camara2d.viewportWidth,camara2d.viewportHeight);
-			bmf.drawMultiLine(batch, creditos, 0, camara2d.viewportHeight-100);
+			//bmf.drawMultiLine(batch, creditos, 0, camara2d.viewportHeight-100);
 		batch.end();
 	}
 

@@ -23,9 +23,6 @@ package com.sebasxogo2d.pantallas;
  * 
  * */
 
-/**
- * @author Sebastian Cabanas 
- * */
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -45,6 +42,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.Sebas.AssetsXogo;
 import com.mygdx.game.Sebas.MeuXogoGame;
 import com.sebasxogo2d.modelo.Mundo;
+
+/**
+ * Main Screen of the game which it's shows when the user enter in the application.
+ * Implements the interface Screen to use the render, resize and the lifecycle methods.
+ *
+ * @author Sebastián Cabanas 
+ * @version 1.5
+ * */
 
 public class Presentacion implements Screen, InputProcessor{
 

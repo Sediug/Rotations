@@ -23,9 +23,7 @@ package com.sebasxogo2d.renderer;
  * 
  * */
 
-/**
- * @author Sebastian Cabanas 
- * */
+
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -44,6 +42,12 @@ import com.mygdx.game.Sebas.AssetsXogo;
 import com.sebasxogo2d.modelo.Mundo;
 import com.sebasxogo2d.pantallas.PantallaXogo;
 
+/**
+ * Class which set the logical of the game.
+ *
+ * @author Sebastián Cabanas 
+ * @version 1.5
+ * */
 
 public class RendererXogo {
 	
@@ -57,24 +61,25 @@ public class RendererXogo {
 	private float crono;
 	private BitmapFont bitMapFont;
 	
-	//Puntuacion
-	private int puntuacionTotal;
+	//Puntuacion / Score
+	private int puntuacionTotal; // all
 	private int level;
-	private int pEasy;
-	private int pNormal;
-	private int pKappa;
+	private int easy; // Points by dificulty
+	private int normal;
+	private int kappa;
+
 	
-	// Vidas
+	// Lives
 	private float alturaVidas = 483f , tamanoVidas = 15f;
 	private int vidas;
 
-	// Bola
+	// Ball
 	private float velocidadeBola;
 	private int cambioXbola = 1, cambioYbola = 1;//Sumatorios que o multiplicar por -1 cambian direccion e sentido.
 	private int cambioX2bola = 1, cambioY2bola = 1;
 	private int pointParaBola2 = 1000;
 	private boolean isBola2Enabled;
-	private final float altoBola = 40f  ,anchoBola = 40f;
+	private final float altoBola = 33f  ,anchoBola = 33f;
 	
 	
 	// Paleta
@@ -132,7 +137,7 @@ public class RendererXogo {
 		vidas = 5;
 		gameOver = false;
 		son = true;
-		
+		velocidadeBola = 350f;
 		
 		paleta = new Rectangle();
     	rectBola = new Rectangle();
@@ -157,16 +162,15 @@ public class RendererXogo {
     	//Empezar a funcionar a app cando fagan click na pantalla.
     	running = false;
     	
-    	//Puntos
-    	pEasy = 34;
-    	pNormal = 82;
-    	pKappa = 139;
     	
     	//Levels
     	isBola2Enabled = false;
     	subirLevels= false;
     	idLevel = 2;
-    	velocidadeBola = 400f;
+    	
+    	easy = 34; // Initial points by dificulty
+		normal = 52;
+		kappa = 79;
     	
     	//Izquierdo y Derecho
     	izquierdo = new Rectangle(0, 50,100,100);
@@ -204,19 +208,21 @@ public class RendererXogo {
     	running = estado;
     }
     
-	private void asignarVelocidade(int nivel) {
-		switch (nivel) {
-		case 1:
-			velocidadeBola = 250f;
-			break;
-			
-		case 2:
-			velocidadeBola = 350f;
-			break;
-			
-		case 3:
-			velocidadeBola = 500f;
-			break;
+	private void asignarVelocidade (int nivel) 
+	{
+		switch (nivel) 
+		{
+			case 1:
+				velocidadeBola = 350f;
+				break;
+				
+			case 2:
+				velocidadeBola = 450f;
+				break;
+				
+			case 3:
+				velocidadeBola = 550f;
+				break;
 		}
 	}
     
@@ -315,14 +321,14 @@ public class RendererXogo {
     public void addPuntos(int puntos, int dificultad){
     	switch (dificultad) {
 			case 1:
-				pEasy += puntos;
+				easy += puntos;
 				break;
 	
 			case 2:
-				pNormal += puntos;
+				normal += puntos;
 				break;
 			case 3:
-				pKappa += puntos;
+				kappa += puntos;
 				break;
 		}
     }
@@ -489,7 +495,7 @@ public class RendererXogo {
 		batch.draw(AssetsXogo.exit, X_EXIT, Y_BOTONS, ANCHO_BOTONS, ALTO_BOTTONS);
 	}
     
-	private void debuxarVidas() {
+	private void debuxarVidas() { // Draw lives
 		switch (vidas) {
 			case 1 :
 				batch.draw(AssetsXogo.vidas, 6 + tamanoVidas*4, alturaVidas, tamanoVidas, tamanoVidas);
@@ -521,7 +527,7 @@ public class RendererXogo {
 				batch.draw(AssetsXogo.vidas, 6 + tamanoVidas*4, alturaVidas, tamanoVidas, tamanoVidas);
 				break;
 			default:
-				//Non se ve nada
+				//Non se ve nada // No lives
 				break;
 		}
 			
@@ -537,9 +543,9 @@ public class RendererXogo {
 	}
 
     private void debuxarAnimacions() {
-		batch.draw(AssetsXogo.animMonte.getKeyFrame(crono, true),posXbola, posYbola, anchoBola, altoBola);
+		batch.draw(AssetsXogo.animBola.getKeyFrame(crono, true),posXbola, posYbola, anchoBola, altoBola);
 		if(puntuacionTotal > pointParaBola2){
-			batch.draw(AssetsXogo.animMonte.getKeyFrame(crono, true),posX2bola, posY2bola, anchoBola, altoBola);
+			batch.draw(AssetsXogo.animBola.getKeyFrame(crono, true),posX2bola, posY2bola, anchoBola, altoBola);
 		}
 	}
     
@@ -687,20 +693,21 @@ public class RendererXogo {
 			if(son) plin.play(0.5f);
 			
 			//Sumar puntuación
-			switch (level) {
-			case 1:
-				puntuacionTotal += pEasy;
-				break;
-			case 2:
-				puntuacionTotal += pNormal;
-				break;
-			case 3:
-				puntuacionTotal += pKappa;
-				break;
-				
-			default:
-				puntuacionTotal += pEasy;
-				break;
+			switch (level) 
+			{
+				case 1:
+					puntuacionTotal += easy;
+					break;
+				case 2:
+					puntuacionTotal += normal;
+					break;
+				case 3:
+					puntuacionTotal += kappa;
+					break;
+					
+				default:
+					puntuacionTotal += easy;
+					break;
 			}
 			
 		}
@@ -717,17 +724,17 @@ public class RendererXogo {
 			//Sumar puntuación
 			switch (level) {
 			case 1:
-				puntuacionTotal += pEasy;
+				puntuacionTotal += easy;
 				break;
 			case 2:
-				puntuacionTotal += pNormal;
+				puntuacionTotal += normal;
 				break;
 			case 3:
-				puntuacionTotal += pKappa;
+				puntuacionTotal += kappa;
 				break;
 				
 			default:
-				puntuacionTotal += pEasy;
+				puntuacionTotal += easy;
 				break;
 			}
 			

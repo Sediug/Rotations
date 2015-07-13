@@ -23,9 +23,6 @@ package com.sebasxogo2d.pantallas;
  * 
  * */
 
-/**
- * @author Sebastian Cabanas 
- * */
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -36,6 +33,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Sebas.MeuXogoGame;
 import com.sebasxogo2d.modelo.Mundo;
+
+/**
+ * The screen which it's shows when the game is on pause.
+ * Implements the interface Screen to use the render, resize and the lifecycle methods.
+ *
+ * @author Sebastián Cabanas 
+ * @version 1.5
+ * */
 
 public class PantallaPause implements Screen, InputProcessor {
 	
