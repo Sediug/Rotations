@@ -159,7 +159,8 @@ public class Presentacion implements Screen, InputProcessor{
 	
 	
 
-	private void avisarSonido() {
+	private void avisarSonido () 
+	{
 		escoitarClicks = false; // Mentres miro esto non quero que se active ningún outro boton.
 		new Dialog("Sound state", skin, "dialog") 
 		{ 
@@ -175,7 +176,8 @@ public class Presentacion implements Screen, InputProcessor{
 	}
     
 	@Override
-	public void render(float delta) {
+	public void render (float delta) 
+	{
 		
 		batch.begin();
 			batch.draw(fondo,0,0,Mundo.MUNDO_ANCHO,Mundo.MUNDO_ALTO);
@@ -187,21 +189,24 @@ public class Presentacion implements Screen, InputProcessor{
         	stage.draw();
 	}
 
-	private void debuxarBotons() {
+	private void debuxarBotons () 
+	{
 		batch.draw(AssetsXogo.play, X, playY, ANCHOBUTTON, ALTOBUTTON);
 		batch.draw(AssetsXogo.quit, X, quitY, ANCHOBUTTON, ALTOBUTTON);
 		batch.draw(AssetsXogo.hightscores, X, scoreY, ANCHOBUTTON, ALTOBUTTON);
 		batch.draw(AssetsXogo.options, X, optionsY, ANCHOBUTTON, ALTOBUTTON);
 	}
 	
-	private void playMusica() {
+	private void playMusica () 
+	{
 		son.play();
 		son.setVolume(volumenSon);
 		if(Gdx.app.getType().name().equalsIgnoreCase("android"))son.setVolume(volumenSonAndroid);
 	}
 
 	@Override
-	public void resize(int width, int height) {
+	public void resize (int width, int height) 
+	{
 		camara2d.setToOrtho(false, Mundo.MUNDO_ANCHO, Mundo.MUNDO_ALTO);
         	camara2d.update();
        
@@ -210,32 +215,37 @@ public class Presentacion implements Screen, InputProcessor{
 	}
 	
 	@Override
-	public void show() {
+	public void show () 
+	{
 		Gdx.input.setInputProcessor(this);
 		if(meuxogogame.getSoundState())playMusica(); 
 	}
 
 
 	@Override
-	public void hide() {
+	public void hide () 
+	{
 		// TODO Auto-generated method stub
 		son.stop();
 	}
 
 	@Override
-	public void pause() {
+	public void pause () 
+	{
 		Gdx.input.setInputProcessor(null);
 		son.pause();
 	}
 
 	@Override
-	public void resume() {
+	public void resume () 
+	{
 		Gdx.input.setInputProcessor(this);
 		if(meuxogogame.getSoundState())playMusica();
 	}
 
 	@Override
-	public void dispose() {
+	public void dispose () 
+	{
 		Gdx.input.setInputProcessor(null);
 		
 		batch.dispose();
@@ -247,8 +257,9 @@ public class Presentacion implements Screen, InputProcessor{
 	}
 
 	@Override
-	public boolean keyDown(int keycode) {
-		if (keycode == Keys.BACK) {//Android pulsan a tecla de volver.
+	public boolean keyDown (int keycode) 
+	{
+		if (keycode == Keys.BACK) {
 			playSonBack();
 			escoitarClicks = false;
         		sair = true;
@@ -258,19 +269,22 @@ public class Presentacion implements Screen, InputProcessor{
 	}
 
 	@Override
-	public boolean keyUp(int keycode) {
+	public boolean keyUp (int keycode) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean keyTyped(char character) {
+	public boolean keyTyped (char character) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+	public boolean touchDown (int screenX, int screenY, int pointer, int button) 
+	{
 		
 		
 		vecTemporal.set(screenX,screenY,0);
@@ -279,7 +293,8 @@ public class Presentacion implements Screen, InputProcessor{
         	dedo.set(vecTemporal.x,vecTemporal.y,2, 2);
         	boton.set(X, playY, ANCHOBUTTON, ALTOBUTTON);
         	
-        	if(meuxogogame.getComprobarSound()) dialogYesNoSound();
+        	if(meuxogogame.getComprobarSound()) 
+        		dialogYesNoSound();
         
 	        if (Intersector.overlaps(dedo, boton) && escoitarClicks)
 	        {
@@ -297,7 +312,8 @@ public class Presentacion implements Screen, InputProcessor{
 	        
 	        boton.set(X, optionsY, ANCHOBUTTON, ALTOBUTTON);
 	        
-	        if (Intersector.overlaps(dedo, boton)&& escoitarClicks){// Interseccion dedo co boton.
+	        if (Intersector.overlaps(dedo, boton)&& escoitarClicks)
+	        {// Interseccion dedo co boton.
 	        	
 	        	playSonSelect();
 	        	meuxogogame.setScreen(new PantallaOptions(meuxogogame));
@@ -306,7 +322,8 @@ public class Presentacion implements Screen, InputProcessor{
 	        //Quit 
 	        boton.set(X, quitY, ANCHOBUTTON, ALTOBUTTON);
 	        
-	        if (Intersector.overlaps(dedo, boton)){
+	        if (Intersector.overlaps(dedo, boton))
+	        {
 	        	// Ponher a falso para que so escoite os clicks de Yes,No. Se non está esto sempre 
 	        	//pillaría antes os clicks a highscore etc porque os comproba antes.
 	        	playSonBack();
@@ -315,14 +332,15 @@ public class Presentacion implements Screen, InputProcessor{
 	        	avisarSair();//Dialog exit
 	        }
 	        
-	        if(!escoitarClicks && sair) dialogYesNoSair();
+	        if(!escoitarClicks && sair) 
+	        	dialogYesNoSair();
 	        
         
 		return false;
 	}
 
 
-	public void playSonBack() {
+	public void playSonBack () {
 		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android"))
 		{
 			meuxogogame.sonBack().setVolume(meuxogogame.sonBack().play(), volumenSon);
@@ -334,7 +352,7 @@ public class Presentacion implements Screen, InputProcessor{
 		}
 	}
 	
-	public void playSonSelect() {
+	public void playSonSelect () {
 		if(meuxogogame.getSoundState() && !Gdx.app.getType().name().equalsIgnoreCase("android"))
 		{
 			meuxogogame.sonSelect().setVolume(meuxogogame.sonSelect().play(), volumenSon);
@@ -347,7 +365,8 @@ public class Presentacion implements Screen, InputProcessor{
 
 
 
-	private void dialogYesNoSair() {
+	private void dialogYesNoSair () 
+	{
 		
 	        //Comprobar Yes
 	        if (Intersector.overlaps(dedo, buttonYes) ){//Yes
@@ -361,10 +380,12 @@ public class Presentacion implements Screen, InputProcessor{
         
 	}
 	
-	private void dialogYesNoSound() {
+	private void dialogYesNoSound () 
+	{
 		
 		//Comprobar Yes  
-	        if(Intersector.overlaps(dedo, buttonYes) ){
+	        if(Intersector.overlaps(dedo, buttonYes) )
+	        {
 	        	 meuxogogame.setSoundState(true);//Enabled / yes 
 	        	 meuxogogame.setComprobarSound(false);//Comprobado. A false
 	        	 prefs.putBoolean("soundState", true);
@@ -373,7 +394,8 @@ public class Presentacion implements Screen, InputProcessor{
 	        }
         
 	        //Comprobar No.
-	        if(Intersector.overlaps(dedo, buttonNo)){
+	        if(Intersector.overlaps(dedo, buttonNo))
+	        {
 	        	meuxogogame.setSoundState(false);//Disabled / No 
 	        	meuxogogame.setComprobarSound(false);//Comprobado.
 	        	prefs.putBoolean("soundState", false);

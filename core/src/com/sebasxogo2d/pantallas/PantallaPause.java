@@ -44,14 +44,41 @@ import com.sebasxogo2d.modelo.Mundo;
 
 public class PantallaPause implements Screen, InputProcessor {
 	
+	/**
+         * Var to store an instance of the main class
+         */
 	private MeuXogoGame meuxogogame;
+
+	/**
+         * Var to store an instance of the game which is currently playing
+         */
 	private PantallaXogo pantallaXogo;
+
+	/**
+         * An Orthographic Camera in 2 dimensions 
+         */
 	private OrthographicCamera camara2d;
+
+	/**
+         * SpriteBach to draw the textures in the screem
+         */
 	private SpriteBatch batch;
+
+	/**
+         * Texture of the background
+         */
 	private static Texture fondo;
 	
 	
-	public PantallaPause(MeuXogoGame xogo, PantallaXogo pantallaXogo){
+	/**
+         * Constructor which receive an object of the main class and the object who represents the currently
+         * game plaring, initialize and create objects for the properties of this class. 
+         *
+         * @param xogo A instance of the main class
+         * @author Sebastián Cabanas
+         */
+	public PantallaPause (MeuXogoGame xogo, PantallaXogo pantallaXogo)
+	{
 		this.meuxogogame = xogo;
 		this.pantallaXogo = pantallaXogo;
 		
@@ -61,46 +88,54 @@ public class PantallaPause implements Screen, InputProcessor {
 	}
 	
 	@Override
-	public void render(float delta) {
+	public void render (float delta) 
+	{
 		batch.begin();
-			
+			// Draw the background
 			batch.draw(fondo,0,0,Mundo.MUNDO_ANCHO,Mundo.MUNDO_ALTO);
 		
 		batch.end();
 	}
 
 	@Override
-	public void resize(int width, int height) {
+	public void resize (int width, int height) 
+	{
 		camara2d.setToOrtho(false, Mundo.MUNDO_ANCHO, Mundo.MUNDO_ALTO);
         camara2d.update();
        
         batch.setProjectionMatrix(camara2d.combined);
         batch.disableBlending();
 	}
+
 	@Override
-	public void show() {
+	public void show () 
+	{
 		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
-	public void hide() {
+	public void hide () 
+	{
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void pause() {
+	public void pause () 
+	{
 		Gdx.input.setInputProcessor(null);
 
 	}
 
 	@Override
-	public void resume() {
+	public void resume () 
+	{
 		 Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
-	public void dispose() {
+	public void dispose () 
+	{
 		Gdx.input.setInputProcessor(null);
 		
 		batch.dispose();
@@ -108,8 +143,11 @@ public class PantallaPause implements Screen, InputProcessor {
 	}
 
 	@Override
-	public boolean keyDown(int keycode) {
-		if (keycode == Keys.BACK) {//Android pulsan a tecla de volver.
+	public boolean keyDown (int keycode) 
+	{
+		//Android back key. Back to the main screen
+		if (keycode == Keys.BACK) 
+		{
         	meuxogogame.setComprobarSound(false);
         	meuxogogame.setScreen(new Presentacion(meuxogogame));
 		}
@@ -117,43 +155,51 @@ public class PantallaPause implements Screen, InputProcessor {
 	}
 
 	@Override
-	public boolean keyUp(int keycode) {
+	public boolean keyUp (int keycode) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean keyTyped(char character) {
+	public boolean keyTyped (char character) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+	public boolean touchDown (int screenX, int screenY, int pointer, int button) 
+	{
+		// When the user touch the screen back to the game.
 		meuxogogame.setScreen(pantallaXogo);
 		return false;
 	}
 
 	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int screenX, int screenY, int pointer, int button) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int screenX, int screenY, int pointer) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
+	public boolean mouseMoved (int screenX, int screenY) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean scrolled(int amount) {
+	public boolean scrolled (int amount) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}

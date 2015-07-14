@@ -175,19 +175,22 @@ public class Creditos implements Screen, InputProcessor {
 	}
 
 	@Override
-	public void pause () {
+	public void pause () 
+	{
 		// Set the listener to null, on pause
 		Gdx.input.setInputProcessor(null);
 	}
 
 	@Override
-	public void resume () {
+	public void resume () 
+	{
 		// Set a listener to input. Keys, mouse, etc.
 		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
-	public void dispose () {
+	public void dispose () 
+	{
 		// Set the listener to null
 		Gdx.input.setInputProcessor(null);
 		
@@ -215,7 +218,8 @@ public class Creditos implements Screen, InputProcessor {
 	}
 
 	@Override
-	public boolean keyTyped (char character) {
+	public boolean keyTyped (char character) 
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}

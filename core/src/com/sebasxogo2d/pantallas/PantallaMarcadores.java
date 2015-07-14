@@ -291,7 +291,8 @@ public class PantallaMarcadores implements Screen, InputProcessor
 	}
 
 	@Override
-	public void dispose() {
+	public void dispose () 
+	{
 		Gdx.input.setInputProcessor(null);
 		
 		batch.dispose();

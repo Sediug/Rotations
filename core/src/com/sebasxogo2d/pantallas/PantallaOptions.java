@@ -363,7 +363,8 @@ public class PantallaOptions implements Screen {
 	 * @author Sebastián Cabanas
 	 */
 
-	public void checkIn() {
+	public void checkIn () 
+	{
 		idLista = lista.getSelectedIndex();
 		idSound = sound.getSelectedIndex();
 		idLanguaje = languaje.getSelectedIndex();
@@ -379,7 +380,8 @@ public class PantallaOptions implements Screen {
 
 	
 	@Override
-	public void render(float delta) {
+	public void render (float delta) 
+	{
 
 		// Draw a diferent textures and background if there is some changes to save or not.
 		batch.begin();
@@ -400,7 +402,8 @@ public class PantallaOptions implements Screen {
 	
 
 	@Override
-	public void resize(int width, int height) {
+	public void resize (int width, int height) 
+	{
 		camara2d.setToOrtho(false, Mundo.MUNDO_ANCHO, Mundo.MUNDO_ALTO);
 	        camara2d.update();
 	       
@@ -411,29 +414,34 @@ public class PantallaOptions implements Screen {
 	}
 	
 	@Override
-	public void show() {
+	public void show () 
+	{
 		Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
-	public void hide() {
+	public void hide () 
+	{
 		Gdx.input.setInputProcessor(null);
 
 	}
 
 	@Override
-	public void pause() {
+	public void pause () 
+	{
 		Gdx.input.setInputProcessor(null);
 
 	}
 
 	@Override
-	public void resume() {
+	public void resume () 
+	{
 		 Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
-	public void dispose() {
+	public void dispose () 
+	{
 		Gdx.input.setInputProcessor(null);
 		
 		batch.dispose();
@@ -447,7 +455,8 @@ public class PantallaOptions implements Screen {
 	 * @author Sebastián Cabanas
 	 */
 
-	public void cargarPrefs(){
+	public void cargarPrefs ()
+	{
 
 		// Level, default Easy
 		if(prefs.getString("nivel","pEasy").equalsIgnoreCase("pNormal")) 
@@ -482,9 +491,11 @@ public class PantallaOptions implements Screen {
 	 * @author Sebastián Cabanas
 	 */
 
-	public void gardarDatos() {
+	public void gardarDatos ()
+	{
 
-		switch (idLista) {
+		switch (idLista) 
+		{
 				
 			case 0:
 				prefs.putString("nivel","pEasy");
@@ -500,11 +511,13 @@ public class PantallaOptions implements Screen {
 				
     	}
 
-    	switch (idSound) {
+    	switch (idSound) 
+    	{
 			case 0:
 				meuxogogame.setSoundState(true);// Enabled
 				prefs.putBoolean("soundState", true);
 				break;
+				
 			case 1:
 				meuxogogame.setSoundState(false);// Disabled
 				prefs.putBoolean("soundState", false);
