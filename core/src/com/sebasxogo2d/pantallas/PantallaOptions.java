@@ -50,27 +50,27 @@ import com.sebasxogo2d.modelo.Mundo;
 
 public class PantallaOptions implements Screen {
 	
-	/**
+	/*
          * Var to store a instance of the main class
          */
 	private MeuXogoGame meuxogogame;
 
-	/**
+	/*
          * An Orthographic Camera in 2 dimensions 
          */
 	private OrthographicCamera camara2d;
 
-	/**
+	/*
          * SpriteBach to draw the textures in the screem
          */
 	private SpriteBatch batch;
 
-	/**
+	/*
          * If the user changes something in the settings
          */
 	private boolean changes;
 	
-	/**
+	/*
          * Preferences to load the saved settings
          */ 
 	private Preferences prefs;
@@ -83,7 +83,7 @@ public class PantallaOptions implements Screen {
 	 */
   	private Stage stage;
 
-  	/**
+  	/*
   	 * The skin to use for this user interface.
   	 *
 	 * The Skin class stores resources for UI widgets to use. It is a convenient container 
@@ -92,22 +92,22 @@ public class PantallaOptions implements Screen {
 	 */
   	private Skin skin = MeuXogoGame.skin;
 
-  	/**
+  	/*
   	 * Select boxes to select the language, dificult level, etc.
   	 */
   	private SelectBox<String> lista, sound, languaje;
 
-  	/**
+  	/*
   	 * Diferent text to use in the UI
   	 */
   	private TextField left, right;
 
-  	/**
+  	/*
   	 * The id's of the selected items in the select boxes
   	 */
   	private int idLista, idSound, idLanguaje;
 
-  	/**
+  	/*
   	 * Settings saved as a preferences.
   	 */
   	private String nivel, prefLeft, prefRight, estado; // Preferencias
@@ -128,12 +128,12 @@ public class PantallaOptions implements Screen {
   	private final float anchoSB = Gdx.graphics.getHeight()/6, alto = Gdx.graphics.getHeight()/20;
 	private final float ANCHO = Gdx.graphics.getHeight()/9, ALTO = Gdx.graphics.getHeight()/25;
 	
-	/**
+	/*
 	 * Volume of the sound in the PC version and Web version
 	 */
 	private final float VOLUMENSON = 0.2f;
 
-	/**
+	/*
 	 * Volume of the sound in the ANDROID version
 	 */
 	private final float VOLUMENSONANDROID = 1f;
@@ -486,7 +486,7 @@ public class PantallaOptions implements Screen {
 	}
 
 	/**
-	 * Method which save the settings in the preference file. 
+	 * Method which save the settings in the preferences file. 
 	 *
 	 * @author Sebastián Cabanas
 	 */

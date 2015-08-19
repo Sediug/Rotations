@@ -57,90 +57,90 @@ import com.sebasxogo2d.renderer.RendererXogo;
 
 public class PantallaXogo implements Screen, InputProcessor {
 
-	/**
+	/*
      * Final which have the true if the version is Android or false if you are playing another
      * version of the game (IOs, PC, Web...)
      */
 	private final boolean ANDROID = Gdx.app.getType().name().equalsIgnoreCase("android");
 	
-	/**
+	/*
      * Boolean var which indicate if the game is on pause or not.
      */
 	private boolean pause = false;
 
-	/**
+	/*
      * Boolean var which indicate if the game finish or not (finxogo = true = end of the game).
      * Lives = 0
      */
 	private boolean finxogo = false;
 
-	/**
+	/*
      * Time between levels
      */
 	private int tempo_Nivel = 30;// 15 - 30 - 45 - 60
 
-	/**
+	/*
      * Velocity for add to the ball every tempo_Nivel seconds
      */
 	private final int aumentoVelocidade = 50;
 	
-	/**
+	/*
      * Cronometer for the game
      */
 	private float crono;
 
-	/**
+	/*
      * The time when the game adds velocity to the ball and begin to give more points to the user (level up)
      */
 	private int segCambioNivel;
 
-	/**
+	/*
      * Allows the user to move the paddle or not.
      */
 	private boolean moverPala = true;
 
-	/**
+	/*
      * Var to store a instance of the main class
      */
 	private MeuXogoGame meuxogogame;
 
-	/**
+	/*
      * Var to store a instance of class which render the game
      */
 	private RendererXogo rendererxogo;
 
-	/**
+	/*
      * The class Mundo have the size of the world game and other properties.
      */
 	private Mundo meuMundo;
 
-	/**
+	/*
      * Vector of 3 dimensions
      */
 	private Vector3 vecTemporal;
 
-	/**
+	/*
      * Rectangles which represents the position of the finger in the screen, when the user
      * touch the screen and the position of some buttons.
      */
 	private Rectangle dedo, sound, pauseBtn, exit;
 
-	/**
+	/*
      * Background music of the game
      */
 	private Music sonFondo;
 
-	/**
+	/*
      * State of the sound, enabled or disabled
      */
 	private boolean soundState;
 
-	/**
+	/*
 	 * Volume of the sound in the PC version and Web version
 	 */
 	private final float VOLUMEN = 0.2f;
 
-	/**
+	/*
 	 * Volume of the sound in the ANDROID version
 	 */
 	private final float VOLUMENANDROID = 1f;
@@ -155,24 +155,24 @@ public class PantallaXogo implements Screen, InputProcessor {
 	public static String nivel = "nivel", level;
 	public static int levelInteger;
 
-	/**
+	/*
 	 * Best scores stored as in the preferences
 	 */
 	private int p1, p2, p3, p4, p5;
 
-	/**
+	/*
 	 * Names of the users who have the biggest scores.
 	 */
 	private String n1, n2, n3, n4; 
 	
 	// User Interface properties.
 
-	/**
+	/*
 	 * The stage handles the viewport and distributes input events.
 	 */
 	private Stage stage;
 
-	/**
+	/*
   	 * The skin to use for this user interface.
   	 *
 	 * The Skin class stores resources for UI widgets to use. It is a convenient container 
@@ -181,93 +181,94 @@ public class PantallaXogo implements Screen, InputProcessor {
 	 */
 	private Skin skin = MeuXogoGame.skin;
 
-	/**
+	/*
   	 * Textfield with the score board
   	 */
 	private TextField marcador;
 
-	/**
+	/*
   	 * Label with the test "Type a nickname please: "
   	 */
 	private Label labTexto;
+	private final String LABEL = "Type a nickname please: ";
 
-	/**
+	/*
   	 * Textfield wich have the nickname of the user who's reach X score.
   	 */
 	private TextField texto;
 
-	/**
+	/*
   	 * Button Save which save the nickname of the user and his score (if his score is better than
   	 * at least one of the best scores)
   	 */
 	private Button save;
 
-	/**
+	/*
   	 * Size of the score board.
   	 */
 	private float anchoMarcador;
 	
 	// Sizes of the elements in the UI
 
-	/**
+	/*
   	 * Size of the textfield with the nichname of the user.
   	 */
 	private final float ANCHO_NOMBRE = (float) (Gdx.graphics.getWidth()/3), 
 						ALTO_NOMBRE = Gdx.graphics.getHeight()/20;
 	
-	/**
+	/*
   	 * SIze of the button Save
   	 */
 	private final float	ANCHO_SAVE = (float) (Gdx.graphics.getWidth()/5.3),
 						ALTO_SAVE = Gdx.graphics.getHeight()/23;
 	
-	/**
+	/*
   	 * Size of the label
   	 */
 	private final float ANCHO_LAB = Gdx.graphics.getWidth()/23, 
 						ALTO_LAB = Gdx.graphics.getHeight()/30;
 	
-	/**
+	/*
   	 * Position of the textfield (nickname) in the screen
   	 */
 	private final float nombreX =(float) (Gdx.graphics.getWidth()/3) ,
 						nombreY = (float) (Gdx.graphics.getHeight()/2.3); 
 	
-	/**
+	/*
   	 * Position of the button Save in the screen
   	 */
 	private final float saveX = (float) (Gdx.graphics.getWidth()/2.45), 
 						saveY = (float) (Gdx.graphics.getHeight()/2.8);
 	
-	/**
+	/*
   	 * Position of the label in the screen.
   	 */
 	private final float labNombreX = (float) (Gdx.graphics.getWidth()/2.3), 
 						labNombreY = (float) (Gdx.graphics.getHeight()/2);
 	
-	/**
+	/*
   	 * Position of the score board in the X axis.
   	 */
 	private final float MARCADOR_X = (float) (Gdx.graphics.getWidth() / 2.3);
 	
-	/**
+	/*
   	 * Position of the score board in the Y axis.
   	 */
 	private final float MARCADOR_Y = (float) (Gdx.graphics.getHeight()*0.93);
 
-	/**
+	/*
   	 * Height of the score board.
   	 */
 	private final float MARCADOR_ALTO = Gdx.graphics.getHeight()/19;
 	
 	private int id = 1;
 
-	/**
+	/*
   	 * Move to left or to right
   	 */
 	private int idMove;
 
-	/**
+	/*
   	 * Left and right keys. Only for PC version, because if the user choose to change the keys 
   	 * to move the paddle
   	 */
@@ -276,7 +277,7 @@ public class PantallaXogo implements Screen, InputProcessor {
 
 	/**
  	 * Constructor which receive an object of the main class, initialize and create objects
-	 * for the properties of this class. 
+	 * for the properties of this class. It's the screen of the game.
  	 *
  	 * @param meuxogogame A instance of the main class
  	 * @author Sebastián Cabanas
@@ -300,48 +301,58 @@ public class PantallaXogo implements Screen, InputProcessor {
 		sonFondo = AssetsXogo.musica;
 
 		prefs = meuxogogame.getPrefs();
-		obterPrefs();
+		getPrefs();
 	
-		// User interface
+		// User interface. After the user lose.
 		anchoMarcador = 27f;
 		stage = new Stage();
-		marcador();
-		nombre();
-		gardarBoton();
-		labNombre();
+		marcador(); // score
+		nombre(); // for name
+		gardarBoton(); // button saveY
+		labNombre(); // label with info
 		
-		segCambioNivel = 0;
+		segCambioNivel = 0; // time to the next add on the velocity of the ball.
 		
 		
 	}
 
-	private void obterPrefs () 
+	/**
+	 * Method which load the saved preferences of the application, then set the dificult level.
+	 *
+	 * @author Sebastián Cabanas
+	 */
+	private void getPrefs () 
 	{
-		// Obter puntuacións actuales.
+		// Get the scores saved to compare with the result of the current game.
 		p1 = prefs.getInteger(puntuacion1, 0);
 		p2 = prefs.getInteger(puntuacion2, 0);
 		p3 = prefs.getInteger(puntuacion3, 0);
 		p4 = prefs.getInteger(puntuacion4, 0);
 		p5 = prefs.getInteger(puntuacion5, 0);
 
-		// Obter nomes actuales.
+		// Get the name of the people who earn this scores. 
 		n1 = prefs.getString("name1", "");
 		n2 = prefs.getString("name2", "");
 		n3 = prefs.getString("name3", "");
 		n4 = prefs.getString("name4", "");
 		
-		// Obter level seleccionado.
+		// Get dificult level selected in the options screen. Default easy
 		level = prefs.getString(nivel, "pEasy");
 		
-		// Obter controis.
+		// Only for PC version. Get the controls for move the paddle
 		teclaIz = prefs.getString("controisLeft","left");
 		teclaDer = prefs.getString("controisRight","right");
 		
 		prefs.flush();
-		asignarLevel();
+		asignarLevel(); // Set the dificult level for the current game.
 		
 	}
 
+	/**
+	 * Method which set the dificult level to the current game with the info of the preferences. 
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	public void asignarLevel () 
 	{
 		if(level.equalsIgnoreCase("pEasy"))
@@ -358,6 +369,11 @@ public class PantallaXogo implements Screen, InputProcessor {
 		}
 	}
 
+	/**
+	 * Method which create the UI for the button Save and a listener for its events.
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	private void gardarBoton () 
 	{
 		save = new TextButton("Save", skin);
@@ -368,7 +384,7 @@ public class PantallaXogo implements Screen, InputProcessor {
 		{
 			public void clicked (InputEvent event, float x, float y) 
 			{
-				// Gardamos mellores puntuacions no hide()
+				// Save the best score in the hide method.
 				meuxogogame.setComprobarSound(false);
 				meuxogogame.setScreen(new Presentacion(meuxogogame));
 			}
@@ -376,6 +392,11 @@ public class PantallaXogo implements Screen, InputProcessor {
 		stage.addActor(save);
 	}
 
+	/**
+	 * Method which create the UI for a text field where the user may write the name
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	private void nombre () 
 	{
 		texto = new TextField("", skin);
@@ -385,6 +406,11 @@ public class PantallaXogo implements Screen, InputProcessor {
 		stage.addActor(texto);
 	}
 
+	/**
+	 * Method which create the UI for a scoreboard.
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	private void marcador () 
 	{
 		marcador = new TextField("0", skin);
@@ -393,10 +419,14 @@ public class PantallaXogo implements Screen, InputProcessor {
 		stage.addActor(marcador);
 	}
 
-
+	/**
+	 * Method which create the UI for the label which says "Put here a nickname please..."
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	private void labNombre () 
 	{
-		labTexto = new Label("Type a nickname please: ", skin);
+		labTexto = new Label(LABEL, skin);
 		labTexto.setColor(Color.DARK_GRAY);
 		labTexto.setFontScale(1);
 		labTexto.setBounds(labNombreX, labNombreY, ANCHO_LAB, ALTO_LAB);
@@ -405,11 +435,22 @@ public class PantallaXogo implements Screen, InputProcessor {
 		stage.addActor(labTexto);
 	}
 
+	/**
+	 * Method which update the current score into the scoreboard.
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	private void cargarElementosGraficos () 
 	{
 		marcador.setText("" + rendererxogo.getPuntuacionTotal());
 	}
 
+	/**
+	 * Method which play the background music in a infinite looping. With diferent volume 
+	 * in the Android version.
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	private void play_musica () 
 	{
 		sonFondo.setVolume(VOLUMEN);
@@ -418,23 +459,25 @@ public class PantallaXogo implements Screen, InputProcessor {
 		sonFondo.play();
 	}
 
+	/**
+	 * Method which get the score of the game already finished and the name written by the user, 
+	 * then compare to the saved max. scores and replace it if it's higher
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	private void actualizarPuntuacions () 
 	{
-		// Puntuación da partida.
-		int puntosPartida = rendererxogo.getPuntuacionTotal();
-		String nome = texto.getText();
-		if (nome.length()>8)nome = nome.substring(0, 8);
+		// Score of this game.
+		int puntosPartida = rendererxogo.getPuntuacionTotal(); // Total score of this game.
+		String nome = texto.getText(); // Name written by the user.
+		if (nome.length()>8)nome = nome.substring(0, 8); // The nickname can hold more than 8 chars,
 
 
-		// Si a puntuacion de esta partida supera a partida gardada actualmente
-		// actualizamos a puntuación na posición que sexa.
 		if (puntosPartida > p1) 
 		{
 			prefs.putInteger(puntuacion1, puntosPartida);
 			prefs.putString("name1", nome);
 
-			// Si algunha e menor asigno a puntuacion gardada na var de
-			// puntuacion actual para que se garde no seguinte.
 			puntosPartida = p1;
 			nome = n1;
 		}
@@ -482,8 +525,7 @@ public class PantallaXogo implements Screen, InputProcessor {
 		crono = rendererxogo.getCrono();
 		rendererxogo.render(delta);
 		soundState = meuxogogame.getSoundState();
-		rendererxogo.setSoundState(soundState);// Pasolle o render o estado de
-												// son	
+		rendererxogo.setSoundState(soundState);
 		controlarCrono();
 		ampliarMarcador();
 		moverPala();
@@ -520,6 +562,12 @@ public class PantallaXogo implements Screen, InputProcessor {
 		stage.draw();
 	}
 
+	/**
+	 * Method which call to other method in the class render to move the paddle when the
+	 * user touch the screen or the keyboard in a PC.
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	public void moverPala () 
 	{
 		if (moverPala)rendererxogo.moverPala(1, claves(teclaIz), claves(teclaDer));
@@ -536,24 +584,33 @@ public class PantallaXogo implements Screen, InputProcessor {
 		}
 	}
 
+	/**
+	 * Method which have the control over the chronometer.
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	public void controlarCrono () 
 	{
 
-		// Mostrado o 3 2 1 GO! toca empezar.
+		// Show the initial message 3  2 1 GO!
 		if(crono > 3.5)rendererxogo.setRuning(true);
 		
-		
-		// Cada (tempo_Nivel)segundos aumentar velocidade e puntuacion. Sacar 2 bolas
+	
 		if((int)crono == tempo_Nivel && (int) crono != segCambioNivel){
 			rendererxogo.addVelocidadeBola(aumentoVelocidade);
-			rendererxogo.addPuntos(10, levelInteger);
-			segCambioNivel = (int) crono;// Gardamos ultima vez que se aumentou para non volver aumentar no mismo segundo.
-			tempo_Nivel += tempo_Nivel;// Ir de tempo_Nivel en TNivel segundos. 15 - 30 - 45 -60 etc
-			rendererxogo.setBola2(true);
+			rendererxogo.addPuntos(10, levelInteger); // Earn more points each time the velocity increase.
+			segCambioNivel = (int) crono;// Save the last time when the velocity increase to do it only one time.
+			tempo_Nivel += tempo_Nivel;// Add velocity each tempo_Nivel seconds 15 - 30 - 45 -60 etc
+			rendererxogo.setBola2(true); // Enable to have 2 balls when the user reach a specific score.
 			rendererxogo.setLevelUP(true);
 		} 
 	}
 
+	/**
+	 * Method which increase the size of the scoreboard every time the user reach a specific score.
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	private void ampliarMarcador () 
 	{
 		
@@ -709,19 +766,22 @@ public class PantallaXogo implements Screen, InputProcessor {
  
 	private void touch (int screenX, int screenY) 
 	{
-		moverPala = true;// Se clickean nos botons de arriba que non se mova a
-							// pala (sonido, pause, exit), pero por defecto que
-							// si se mova.
 
+		moverPala = true;
+
+		// Vector with the position touched.
 		Vector3 temporal = new Vector3(screenX, screenY, 0);
-		RendererXogo.camara2d.unproject(temporal);
+
+		// Turn the position in the real screen into the coordinates of the game screem
+		RendererXogo.camara2d.unproject(temporal); 
 
 		vecTemporal.set(screenX, screenY, 0);
 		RendererXogo.camara2d.unproject(vecTemporal);
 
+		// Finger, rectangle in the position touched of 2x2
 		dedo.set(vecTemporal.x, vecTemporal.y, 2, 2);
 
-		// Referencia os botons do render.
+		//  Buttons in the top of the screen 
 		sound.set(RendererXogo.X_SOUND, RendererXogo.Y_BOTONS,
 				RendererXogo.ANCHO_BOTONS, RendererXogo.ALTO_BOTTONS);
 		pauseBtn.set(RendererXogo.X_PAUSE, RendererXogo.Y_BOTONS,
@@ -729,10 +789,12 @@ public class PantallaXogo implements Screen, InputProcessor {
 		exit.set(RendererXogo.X_EXIT, RendererXogo.Y_BOTONS,
 				RendererXogo.ANCHO_BOTONS, RendererXogo.ALTO_BOTTONS);
 
+		// Check if the position touch match with the buttons.
 		comprobarBoton(sound, 1);
 		comprobarBoton(pauseBtn, 2);
 		comprobarBoton(exit, 3);
 		
+		// Check if the user has touched the buttons to move the padle 
 		if (Intersector.overlaps(dedo, rendererxogo.getIz()))
 		{
 			idMove = 2;
@@ -748,11 +810,17 @@ public class PantallaXogo implements Screen, InputProcessor {
 
 	}
 
+
+	/**
+	 * Method which check if the user touch x or y button and execute some instructions if true. 
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	private void comprobarBoton(Rectangle boton, int id) 
 	{
 		switch (id) 
 		{
-			case 1:// Boton sonido
+			case 1:// Button sound
 				if (Intersector.overlaps(dedo, boton)) 
 				{
 					changeSound();
@@ -760,7 +828,7 @@ public class PantallaXogo implements Screen, InputProcessor {
 				}
 				break;
 
-			case 2:// Boton pause
+			case 2:// Button pause
 				if (Intersector.overlaps(dedo, boton)) 
 				{
 					pause = true;
@@ -768,20 +836,21 @@ public class PantallaXogo implements Screen, InputProcessor {
 				}
 				break;
 
-			case 3:// Boton exit
+			case 3:// Button exit
 				if (Intersector.overlaps(dedo, boton)) 
 				{
-					meuxogogame.setComprobarSound(false);// So se debe comprobar a
-															// primeira vez cando
-															// entramos, ademáis
-															// esto so afecta o
-															// listener
+					meuxogogame.setComprobarSound(false);
 					meuxogogame.setScreen(new Presentacion(meuxogogame));
 				}
 				break;
 		}
 	}
 
+	/**
+	 * Method which turns the sound state into the opposite state, if the sound is active then deactive it.
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	public void changeSound () 
 	{
 		if (soundState) 
@@ -798,6 +867,12 @@ public class PantallaXogo implements Screen, InputProcessor {
 		prefs.flush();
 	}
 	
+
+	/**
+	 * Method which return the constant related with a key. 
+	 *
+	 * @author Sebastián Cabanas
+	 */
 	public int claves (String key)
 	{
 		if(key.equalsIgnoreCase("a"))return Keys.A;

@@ -49,32 +49,32 @@ import com.sebasxogo2d.modelo.Mundo;
 
 public class Creditos implements Screen, InputProcessor {
 	
-	/**
+	/*
          * Var to store a instance of the main class
          */
 	private MeuXogoGame meuxogogame;
 
-	/**
+	/*
          * An Orthographic Camera in 2 dimensions 
          */
 	private OrthographicCamera camara2d;
 
-	/**
+	/*
          * SpriteBach to draw the textures in the screem
          */
 	private SpriteBatch batch;
 
-	/**
+	/*
          * Texture for background
          */
 	private Texture fondo;
 
-	/**
+	/*
          * A string which have all the text of the credits
          */
 	private StringBuilder creditos;
 
-	/**
+	/*
          * The font to write in the screen
          */
 	private BitmapFont bmf;

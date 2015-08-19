@@ -44,27 +44,27 @@ import com.sebasxogo2d.modelo.Mundo;
 
 public class PantallaPause implements Screen, InputProcessor {
 	
-	/**
+	/*
          * Var to store an instance of the main class
          */
 	private MeuXogoGame meuxogogame;
 
-	/**
+	/*
          * Var to store an instance of the game which is currently playing
          */
 	private PantallaXogo pantallaXogo;
 
-	/**
+	/*
          * An Orthographic Camera in 2 dimensions 
          */
 	private OrthographicCamera camara2d;
 
-	/**
+	/*
          * SpriteBach to draw the textures in the screem
          */
 	private SpriteBatch batch;
 
-	/**
+	/*
          * Texture of the background
          */
 	private static Texture fondo;

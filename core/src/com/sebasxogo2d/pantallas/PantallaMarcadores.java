@@ -52,54 +52,54 @@ import com.sebasxogo2d.modelo.Mundo;
 
 public class PantallaMarcadores implements Screen, InputProcessor 
 {
-	/**
+	/*
          * Var to store a instance of the main class
          */
 	private MeuXogoGame meuxogogame;
 
-     	/**
+     	/*
      	 * An Orthographic Camera in 2 dimensions 
      	 */
 	private OrthographicCamera camara2d;
 
-	/**
+	/*
      	 * SpriteBach to draw the textures in the screem
      	 */
 	private SpriteBatch batch;
 
-	/**
+	/*
      	 * Texture for background
     	 */
 	private static Texture fondo;
 
-	/**
+	/*
      	 * Rectangles which represents the finger when it touch the screen and the button back, 
      	 * this restangles are used to check the intersection between the finger and the button
      	 */
 	private Rectangle dedo, boton;
 	
-	/**
+	/*
 	 * ANCHOBUTTON and ALTOBUTTON are the size of the button back and X/Y are the position 
 	 */
 	private final float ANCHOBUTTON = 190f, ALTOBUTTON = 50f;
 	private final float X = 50f, Y = 110f;
 	
-	/**
+	/*
 	 * Preferences of the user to load the scores
 	 */
 	private Preferences prefs;
 
-	/**
+	/*
 	 * The variables 'puntuacionX' are the scores saved
 	 */
 	private int puntuacion1, puntuacion2, puntuacion3, puntuacion4, puntuacion5;
 
-	/**
+	/*
 	 * Names of the users who have the biggest scores
 	 */
 	private String name1, name2, name3, name4, name5;
 	
-	/**
+	/*
 	 * The bmf to set the size and style of the text drawed in the screen
 	 */
 	private BitmapFont bitMapFont;
@@ -111,12 +111,12 @@ public class PantallaMarcadores implements Screen, InputProcessor
 	private final float xP4 = 92f, yP4 = 270f;
 	private final float xP5 = 92f, yP5 = 225f;
 	
-	/**
+	/*
 	 * Volume of the sound in the PC version and Web version
 	 */
 	private final float VOLUMENSON = 0.2f;
 
-	/**
+	/*
 	 * Volume of the sound in the Android version
 	 */
 	private final float VOLUMENSON_ANDROID = 1f;
